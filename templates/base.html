@@ -5,19 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Коллекции бон и монет</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    {% load static %}  <!-- Загружаем статические файлы -->
 </head>
 <body class="bg-gray-100">
     <!-- Header -->
     <header class="bg-[#0ea5e9] p-4">
         <nav class="container mx-auto flex justify-between items-center">
-            <div class="text-[#f0f9ff] text-xl font-bold">Коллекции</div>
+            <!-- Логотип -->
+            <div class="flex items-center">
+                <img src="{% static 'images/logo.png' %}" alt="Логотип" class="h-14 w-auto mr-4">  <!-- Логотип -->
+            <div class="text-[#f0f9ff] text-xl font-bold mr-8">Коллекции бон и монет</div>
             <ul class="flex space-x-4">
-                <li><a href="#" class="text-[#f0f9ff] bg-[#075985] px-4 py-2 rounded hover:bg-[#1e3a8a]">Главная</a></li>
-                <li><a href="#" class="text-[#f0f9ff] bg-[#075985] px-4 py-2 rounded hover:bg-[#1e3a8a]">О проекте</a></li>
-                <li><a href="#" class="text-[#f0f9ff] bg-[#075985] px-4 py-2 rounded hover:bg-[#1e3a8a]">Монеты</a></li>
-                <li><a href="#" class="text-[#f0f9ff] bg-[#075985] px-4 py-2 rounded hover:bg-[#1e3a8a]">Банкноты</a></li>
-                <li><a href="#" class="text-[#f0f9ff] bg-[#075985] px-4 py-2 rounded hover:bg-[#1e3a8a]">Администрирование</a></li>
+                <li><a href="/" class="text-[#f0f9ff] bg-[#075985] px-4 py-2 rounded hover:bg-[#1e3a8a]">Главная</a></li>
+                <li><a href="about/" class="text-[#f0f9ff] bg-[#075985] px-4 py-2 rounded hover:bg-[#1e3a8a]">О проекте</a></li>
+                <li><a href="coins/" class="text-[#f0f9ff] bg-[#075985] px-4 py-2 rounded hover:bg-[#1e3a8a]">Монеты</a></li>
+                <li><a href="notes/" class="text-[#f0f9ff] bg-[#075985] px-4 py-2 rounded hover:bg-[#1e3a8a]">Банкноты</a></li>
+                <li><a href="admin/" class="text-[#f0f9ff] bg-[#075985] px-4 py-2 rounded hover:bg-[#1e3a8a]">Администрирование</a></li>
             </ul>
+            </div>
         </nav>
     </header>
 
