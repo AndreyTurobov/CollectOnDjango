@@ -9,6 +9,7 @@ readme = "README.md"
 python = "^3.12"
 django = "^5.1.5"
 pillow = "^11.1.0"
+django-imagekit = "^5.0.0"
 
 
 [tool.poetry.group.dev.dependencies]
