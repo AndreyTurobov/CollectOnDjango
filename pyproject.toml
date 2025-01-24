@@ -11,6 +11,9 @@ django = "^5.1.5"
 pillow = "^11.1.0"
 
 
+[tool.poetry.group.dev.dependencies]
+faker = "^35.0.0"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
