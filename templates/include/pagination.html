@@ -1,5 +1,17 @@
-<div class="flex items-center space-x-4">
-    <button class="text-[#f0f9ff] bg-[#075985] px-4 py-2 rounded hover:bg-[#1e3a8a]">←</button>
-    <span class="text-[#f0f9ff]">1 из 10</span>
-    <button class="text-[#f0f9ff] bg-[#075985] px-4 py-2 rounded hover:bg-[#1e3a8a]">→</button>
+{% if is_paginated %}
+<div class="flex items-center justify-center mt-8">
+    <div class="flex items-center space-x-4">
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}" class="text-[#f0f9ff] bg-[#075985] px-4 py-2 rounded hover:bg-[#1e3a8a]">← Назад</a>
+        {% endif %}
+
+        <span class="text-[#075985] font-bold">
+            Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" class="text-[#f0f9ff] bg-[#075985] px-4 py-2 rounded hover:bg-[#1e3a8a]">Вперёд →</a>
+        {% endif %}
+    </div>
 </div>
+{% endif %}
