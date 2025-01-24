@@ -6,12 +6,24 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {% for banknote in banknotes %}
         <div class="bg-white p-6 rounded-lg shadow-lg">
-            <h2 class="text-xl font-bold">{{ banknote.full_title }}</h2>
+            <!-- Аверс банкноты -->
+            <div class="mb-4">
+                <img src="{{ banknote.averse_image.url }}" alt="Аверс {{ banknote.full_title }}" class="w-full h-48 object-cover rounded-t-lg">
+            </div>
+
+            <!-- Реверс банкноты -->
+            <div class="mb-4">
+                <img src="{{ banknote.reverse_image.url }}" alt="Реверс {{ banknote.full_title }}" class="w-full h-48 object-cover rounded-t-lg">
+            </div>
+
+            <!-- Заголовок и описание -->
+            <h2 class="text-xl font-bold mt-4">{{ banknote.full_title }}</h2>
             <p class="text-gray-700">{{ banknote.description }}</p>
         </div>
         {% endfor %}
     </div>
-        <!-- Пагинация -->
+
+    <!-- Пагинация -->
     {% include 'include/pagination.html' %}
 </div>
 {% endblock %}
