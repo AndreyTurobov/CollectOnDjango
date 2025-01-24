@@ -1,8 +1,8 @@
 from django.db import models
 
 class TimedBaseModel(models.Model):
-    created_at = models.DateTimeField(format='%Y-%m-%d %H:%M:%S', auto_now_add=True)
-    updated_at = models.DateTimeField(format='%Y-%m-%d %H:%M:%S', auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         abstract = True
