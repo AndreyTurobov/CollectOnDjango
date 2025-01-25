@@ -11,5 +11,10 @@ class BanknoteDAO:
         return Banknote.objects.get(pk=pk)
 
     @staticmethod
-    def search_banknotes(**filters):
+    def search_banknotes(filters):
+        """
+        Реализация фильтрации банкнот на уровне данных.
+        :param filters: Словарь с параметрами фильтрации.
+        :return: Отфильтрованный QuerySet банкнот.
+        """
         return Banknote.objects.filter(**filters)

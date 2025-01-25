@@ -3,11 +3,15 @@
 {% block content %}
 <div class="container mx-auto p-4">
     <h1 class="text-3xl font-bold mb-6">Монеты</h1>
+
+        <!-- Подключаемый блок фильтрации -->
+        {% include 'include/filter.html' %}
+
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {% for coin in coins %}
         <div class="bg-white p-6 rounded-lg shadow-lg">
             <!-- Аверс и реверс -->
-            <div class="flex space-x-4 mb-4">
+            <div class="flex space-x-1 mb-4">
                 <div class="flex-1">
                     <img src="{{ coin.averse_thumbnail.url }}" alt="Аверс {{ coin.full_title }}" class="w-full h-48 object-cover rounded-lg">
                 </div>

@@ -11,5 +11,10 @@ class CoinDAO:
         return Coin.objects.get(pk=pk)
 
     @staticmethod
-    def search_coins(**filters):
+    def search_coins(filters):
+        """
+        Реализация фильтрации монет на уровне данных.
+        :param filters: Словарь с параметрами фильтрации.
+        :return: Отфильтрованный QuerySet монет.
+        """
         return Coin.objects.filter(**filters)
