@@ -1,4 +1,5 @@
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
+
 from ..services.coin_service import CoinService
 
 
@@ -9,3 +10,11 @@ class CoinListView(ListView):
 
     def get_queryset(self):
         return CoinService.get_all_coins().order_by('id')
+
+
+class CoinDetailView(DetailView):
+    template_name = 'coins/detail.html'
+    context_object_name = 'coin'
+
+    def get_object(self, queryset=None):
+        return CoinService.get_coin_by_id(self.kwargs['pk'])

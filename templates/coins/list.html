@@ -6,14 +6,11 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {% for coin in coins %}
         <div class="bg-white p-6 rounded-lg shadow-lg">
-            <!-- Контейнер для аверса и реверса (расположены рядом) -->
-            <div class="flex space-x-1 mb-4">
-                <!-- Аверс монеты -->
+            <!-- Аверс и реверс -->
+            <div class="flex space-x-4 mb-4">
                 <div class="flex-1">
                     <img src="{{ coin.averse_thumbnail.url }}" alt="Аверс {{ coin.full_title }}" class="w-full h-48 object-cover rounded-lg">
                 </div>
-
-                <!-- Реверс монеты -->
                 <div class="flex-1">
                     <img src="{{ coin.reverse_thumbnail.url }}" alt="Реверс {{ coin.full_title }}" class="w-full h-48 object-cover rounded-lg">
                 </div>
@@ -22,6 +19,11 @@
             <!-- Заголовок и описание -->
             <h2 class="text-xl font-bold mt-4">{{ coin.full_title }}</h2>
             <p class="text-gray-700">{{ coin.description }}</p>
+
+            <!-- Кнопка "Подробно" -->
+            <a href="{% url 'coin-detail' coin.pk %}" class="mt-4 bg-blue-500 text-white px-4 py-2 block text-center rounded hover:bg-blue-600">
+                Подробно
+            </a>
         </div>
         {% endfor %}
     </div>

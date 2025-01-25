@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mx-auto p-4">
+    <h1 class="text-3xl font-bold mb-6">{{ coin.full_title }}</h1>
+    <div class="bg-white p-6 rounded-lg shadow-lg">
+        <!-- Изображения монеты -->
+        <div class="flex space-x-4 mb-4">
+            <div class="flex-1">
+                <img src="{{ coin.averse_image.url }}" alt="Аверс {{ coin.full_title }}" class="w-full h-120 object-cover rounded-lg">
+            </div>
+            <div class="flex-1">
+                <img src="{{ coin.reverse_image.url }}" alt="Реверс {{ coin.full_title }}" class="w-full h-120 object-cover rounded-lg">
+            </div>
+        </div>
+
+        <!-- Детали монеты -->
+        <div class="space-y-4">
+            <p><strong>Страна:</strong> {{ coin.country }}</p>
+            <p><strong>Номинал:</strong> {{ coin.nominal }} {{ coin.currency }}</p>
+            <p><strong>Год выпуска:</strong> {{ coin.year }}</p>
+            <p><strong>Материал:</strong> {{ coin.material }}</p>
+            <p><strong>Состояние:</strong> {{ coin.state }}</p>
+            <p><strong>Тип издания:</strong> {{ coin.type_of_edition }}</p>
+            <p><strong>Вес:</strong> {{ coin.weight }} г</p>
+            <p><strong>Диаметр:</strong> {{ coin.diameter }} мм</p>
+            <p><strong>Описание:</strong> {{ coin.description }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

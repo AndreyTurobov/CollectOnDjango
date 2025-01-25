@@ -6,19 +6,22 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {% for banknote in banknotes %}
         <div class="bg-white p-6 rounded-lg shadow-lg">
-            <!-- Аверс банкноты -->
+            <!-- Аверс и реверс (одно над другим) -->
             <div class="mb-4">
-                <img src="{{ banknote.averse_thumbnail.url }}" alt="Аверс {{ banknote.full_title }}" class="w-full h-48 object-cover rounded-t-lg">
+                <img src="{{ banknote.averse_thumbnail.url }}" alt="Аверс {{ banknote.full_title }}" class="w-full h-48 object-cover rounded-lg">
             </div>
-
-            <!-- Реверс банкноты -->
             <div class="mb-4">
-                <img src="{{ banknote.reverse_thumbnail.url }}" alt="Реверс {{ banknote.full_title }}" class="w-full h-48 object-cover rounded-t-lg">
+                <img src="{{ banknote.reverse_thumbnail.url }}" alt="Реверс {{ banknote.full_title }}" class="w-full h-48 object-cover rounded-lg">
             </div>
 
             <!-- Заголовок и описание -->
             <h2 class="text-xl font-bold mt-4">{{ banknote.full_title }}</h2>
             <p class="text-gray-700">{{ banknote.description }}</p>
+
+            <!-- Кнопка "Подробно" -->
+            <a href="{% url 'banknote-detail' banknote.pk %}" class="mt-4 bg-blue-500 text-white px-4 py-2 block text-center rounded hover:bg-blue-600">
+                Подробно
+            </a>
         </div>
         {% endfor %}
     </div>

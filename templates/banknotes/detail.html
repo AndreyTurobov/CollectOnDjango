@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mx-auto p-4">
+    <h1 class="text-3xl font-bold mb-6">{{ banknote.full_title }}</h1>
+    <div class="bg-white p-6 rounded-lg shadow-lg">
+        <!-- Изображения банкноты (одно над другим) -->
+        <div class="mb-4">
+            <img src="{{ banknote.averse_image.url }}" alt="Аверс {{ banknote.full_title }}" class="w-full h-120 object-cover rounded-lg">
+        </div>
+        <div class="mb-4">
+            <img src="{{ banknote.reverse_image.url }}" alt="Реверс {{ banknote.full_title }}" class="w-full h-120 object-cover rounded-lg">
+        </div>
+
+        <!-- Детали банкноты -->
+        <div class="space-y-4">
+            <p><strong>Страна:</strong> {{ banknote.country }}</p>
+            <p><strong>Номинал:</strong> {{ banknote.nominal }} {{ banknote.currency }}</p>
+            <p><strong>Год выпуска:</strong> {{ banknote.year }}</p>
+            <p><strong>Материал:</strong> {{ banknote.material }}</p>
+            <p><strong>Состояние:</strong> {{ banknote.state }}</p>
+            <p><strong>Тип издания:</strong> {{ banknote.type_of_edition }}</p>
+            <p><strong>Подпись:</strong> {{ banknote.signature }}</p>
+            <p><strong>Размер:</strong> {{ banknote.size }}</p>
+            <p><strong>Серийный номер:</strong> {{ banknote.serial_number }}</p>
+            <p><strong>Описание:</strong> {{ banknote.description }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
