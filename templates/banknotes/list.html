@@ -33,31 +33,10 @@
     <!-- Пагинация -->
     {% include 'include/pagination.html' %}
 </div>
+
 <!-- Кнопка "Вверх" -->
-<button id="scrollToTopBtn" class="fixed bottom-4 right-4 bg-[#581c87] text-white p-4 rounded-full shadow-lg hover:bg-[#3d1361] hidden">
-    <span class="text-4xl font-bold">↑</span>
+<button id="scrollToTopBtn">
+    <span>↑</span>
 </button>
 
-<!-- Скрипт для кнопки "Вверх" -->
-<script>
-    // Получаем кнопку
-    const scrollToTopBtn = document.getElementById("scrollToTopBtn");
-
-    // Отслеживаем прокрутку страницы
-    window.onscroll = function() {
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            scrollToTopBtn.classList.remove("hidden"); // Показываем кнопку
-        } else {
-            scrollToTopBtn.classList.add("hidden"); // Скрываем кнопку
-        }
-    };
-
-    // Прокрутка вверх при нажатии на кнопку
-    scrollToTopBtn.addEventListener("click", function() {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth" // Плавная прокрутка
-        });
-    });
-</script>
 {% endblock %}

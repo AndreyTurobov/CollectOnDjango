@@ -6,6 +6,7 @@
     <title>Коллекции бон и монет</title>
     <script src="https://cdn.tailwindcss.com"></script>
     {% load static %}  <!-- Загружаем статические файлы -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">  <!-- Подключаем CSS -->
 </head>
 <body class="bg-gray-100">
     <!-- Header -->
@@ -36,8 +37,11 @@
     <footer class="bg-[#0ea5e9] p-4 mt-8">
         <div class="container mx-auto flex justify-between items-center">
             <div class="text-[#f0f9ff]">© 2023 Туробов Андрей Владимирович. Все права защищены.</div>
-<!--            {% include 'include/pagination.html' %} &lt;!&ndash; Подключаемая пагинация &ndash;&gt;-->
         </div>
     </footer>
+
+    <!-- Подключаем JavaScript -->
+    <script src="{% static 'js/scripts.js' %}"></script>
+
 </body>
 </html>
