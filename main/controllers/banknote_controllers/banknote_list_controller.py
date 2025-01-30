@@ -1,13 +1,17 @@
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView
 
-from ..models.base import CollectorsItem
-from ..services.banknote_service import BanknoteService
+from main.models.base import CollectorsItem
+from main.services.banknote_service import BanknoteService
 
 
-class BanknoteListView(ListView):
+class BanknoteListController(ListView):
     template_name = 'banknotes/list.html'
     context_object_name = 'banknotes'
     paginate_by = 9
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.service = BanknoteService()
 
     def get_context_data(self, **kwargs):
         # Добавляем CHOICES в контекст шаблона
@@ -30,12 +34,4 @@ class BanknoteListView(ListView):
             'type_of_edition': self.request.GET.get('type_of_edition', ''),
         }
         # Используем сервис для поиска банкнот
-        return BanknoteService.search_banknotes(filters).order_by('id')
-
-
-class BanknoteDetailView(DetailView):
-    template_name = 'banknotes/detail.html'
-    context_object_name = 'banknote'
-
-    def get_object(self, queryset=None):
-        return BanknoteService.get_banknote_by_id(self.kwargs['pk'])
+        return self.service.get_by_filter(filters).order_by('id')

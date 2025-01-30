@@ -1,13 +1,17 @@
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView
 
-from ..models.base import CollectorsItem
-from ..services.coin_service import CoinService
+from main.models.base import CollectorsItem
+from main.services.coin_service import CoinService
 
 
-class CoinListView(ListView):
+class CoinListController(ListView):
     template_name = 'coins/list.html'
     context_object_name = 'coins'
     paginate_by = 9
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.service = CoinService()
 
     def get_context_data(self, **kwargs):
         # Добавляем CHOICES в контекст шаблона
@@ -30,12 +34,4 @@ class CoinListView(ListView):
             'type_of_edition': self.request.GET.get('type_of_edition', ''),
         }
         # Используем сервис для поиска монет
-        return CoinService.search_coins(filters).order_by('id')
-
-
-class CoinDetailView(DetailView):
-    template_name = 'coins/detail.html'
-    context_object_name = 'coin'
-
-    def get_object(self, queryset=None):
-        return CoinService.get_coin_by_id(self.kwargs['pk'])
+        return self.service.get_by_filter(filters).order_by('id')
