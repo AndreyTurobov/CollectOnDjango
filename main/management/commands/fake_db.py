@@ -2,8 +2,8 @@ from django.core.management.base import BaseCommand
 
 from faker import Faker
 
-from main.models.coin import Coin
-from main.models.banknote import Banknote
+from main.models.coin_model import CoinModel
+from main.models.banknote_model import BanknoteModel
 
 
 class Command(BaseCommand):
@@ -23,7 +23,7 @@ class Command(BaseCommand):
 
         # Заполнение модели Coin
         for _ in range(count):
-            Coin.objects.create(
+            CoinModel.objects.create(
                 country=fake.random_element(elements=(
                     'Россия', 'Украина', 'Беларусь', 'Казахстан', 'Таджикистан',
                     'Киргизия', 'Азербайджан', 'Армения', 'Грузия', 'Молдова',
@@ -53,7 +53,7 @@ class Command(BaseCommand):
 
         # Заполнение модели Banknote
         for _ in range(count):
-            Banknote.objects.create(
+            BanknoteModel.objects.create(
                 country=fake.random_element(elements=(
                     'Россия', 'Украина', 'Беларусь', 'Казахстан', 'Таджикистан',
                     'Киргизия', 'Азербайджан', 'Армения', 'Грузия', 'Молдова',
