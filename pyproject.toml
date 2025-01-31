@@ -19,3 +19,101 @@ ruff = "^0.9.4"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+line-length = 99
+exclude = [
+    ".git",
+    "**/migrations/*.py",
+]
+
+[tool.ruff.format]
+docstring-code-format = true
+
+[tool.ruff.lint]
+select = [
+    # Pyflakes
+    "F",
+    # pycodestyle
+    "E",
+    # isort
+    "I",
+    # pep8-naming
+    "N",
+    # pydocstyle
+    "D",
+    # pyupgrade
+    "UP",
+    # flake8-async
+    "ASYNC",
+    # flake8-bugbear
+    "B",
+    # flake8-builtins
+    "A",
+    # flake8-commas
+    "COM",
+    # flake8-comprehensions
+    "C4",
+    # flake8-debugger
+    "T10",
+    # flake8-simplify
+    "SIM",
+    # eradicate
+    "ERA",
+    # Pylint
+    "PL",
+]
+
+extend-ignore = [
+    "W191",
+    "B008",
+    "B024",
+    "D100",
+    "D101",
+    "D102",
+    "D103",
+    "D104",
+    "D105",
+    "D203",
+    "D206",
+    "D212",
+    "D213",
+    "D300",
+    "E111",
+    "E114",
+    "E117",
+    "N818",
+    "COM812",
+    "COM819",
+]
+
+[tool.ruff.lint.isort.sections]
+"django" = [
+    "django",
+    "django.contrib",
+]
+
+[tool.ruff.lint.isort]
+force-sort-within-sections = true
+known-third-party = [
+    "faker",
+    "django-imagekit",
+    "pillow",
+]
+known-first-party = [
+    "config",
+    "main",
+    "tests",
+]
+section-order = [
+    "future",
+    "standard-library",
+    "django",
+    "third-party",
+    "first-party",
+    "local-folder",
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
