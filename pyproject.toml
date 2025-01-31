@@ -11,10 +11,10 @@ django = "^5.1.5"
 pillow = "^11.1.0"
 django-imagekit = "^5.0.0"
 
-
 [tool.poetry.group.dev.dependencies]
 faker = "^35.0.0"
 ruff = "^0.9.4"
+pre-commit = "^4.1.0"
 
 [build-system]
 requires = ["poetry-core"]
