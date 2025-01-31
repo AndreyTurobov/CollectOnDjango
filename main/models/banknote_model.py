@@ -1,10 +1,20 @@
 from django.db import models
-from imagekit.models import ProcessedImageField, ImageSpecField
+
+from imagekit.models import (
+    ImageSpecField,
+    ProcessedImageField,
+)
 from imagekit.processors import ResizeToFill
-from .base import CollectorsItem
+
+from main.models.base import CollectorsItem
 
 
 class BanknoteModel(CollectorsItem):
+    """
+    Модель для хранения данных о банкнотах.
+
+    Наследует общие поля и методы от CollectorsItem.
+    """
     signature = models.CharField(max_length=100)
     size = models.CharField(max_length=50)
     serial_number = models.CharField(max_length=50)
@@ -39,6 +49,7 @@ class BanknoteModel(CollectorsItem):
         return self.full_title
 
     class Meta:
+        """Метаданные модели Banknote."""
         db_table = 'banknotes'
         verbose_name = 'Банкнота'
         verbose_name_plural = 'Банкноты'

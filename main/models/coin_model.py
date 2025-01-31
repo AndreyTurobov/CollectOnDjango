@@ -1,13 +1,20 @@
 from django.db import models
+
 from imagekit.models import (
-    ProcessedImageField,
     ImageSpecField,
+    ProcessedImageField,
 )
 from imagekit.processors import ResizeToFill
-from .base import CollectorsItem
+
+from main.models.base import CollectorsItem
 
 
 class CoinModel(CollectorsItem):
+    """
+    Модель для хранения данных о монетах.
+
+    Наследует общие поля и методы от CollectorsItem.
+    """
     edition = models.IntegerField()
     weight = models.DecimalField(max_digits=4, decimal_places=2)
     diameter = models.DecimalField(max_digits=4, decimal_places=2)
@@ -42,6 +49,7 @@ class CoinModel(CollectorsItem):
         return self.full_title
 
     class Meta:
+        """Метаданные модели Coin."""
         db_table = 'coins'
         verbose_name = 'Монета'
         verbose_name_plural = 'Монеты'

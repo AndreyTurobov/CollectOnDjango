@@ -1,14 +1,19 @@
 from django.db import models
 
+
 class TimedBaseModel(models.Model):
+    """Абстрактная модель для хранения общих данных об объектах моделей."""
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
+        """Метаданные абстрактной модели TimedBaseModel."""
+
         abstract = True
 
 
 class CollectorsItem(TimedBaseModel):
+    """Абстрактная модель для хранения общих данных о коллекционных предметах."""
     COUNTRY_CHOICES = [
         ('Россия', 'Россия'),
         ('Украина', 'Украина'),
@@ -75,6 +80,8 @@ class CollectorsItem(TimedBaseModel):
     type_of_edition = models.CharField(max_length=50, choices=TYPE_OF_EDITION_CHOICES)
 
     class Meta:
+        """Метаданные абстрактной модели CollectorsItem."""
+
         abstract = True
 
     def save(self, *args, **kwargs):

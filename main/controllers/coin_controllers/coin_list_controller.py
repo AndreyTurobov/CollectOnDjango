@@ -5,16 +5,28 @@ from main.services.coin_service import CoinService
 
 
 class CoinListController(ListView):
+    """
+    Контроллер для отображения списка монет.
+
+    Использует шаблон 'coins/list.html' и передаёт в контекст объекты 'coins'.
+    Поддерживает пагинацию (по 9 элементов на странице).
+    """
+
     template_name = 'coins/list.html'
     context_object_name = 'coins'
     paginate_by = 9
 
     def __init__(self, *args, **kwargs):
+        """
+        Инициализация контроллера.
+
+        Создаёт экземпляр CoinService для работы с данными монет.
+        """
         super().__init__(*args, **kwargs)
         self.service = CoinService()
 
     def get_context_data(self, **kwargs):
-        # Добавляем CHOICES в контекст шаблона
+        """Добавляет CHOICES в контекст шаблона для использования в фильтрах."""
         context = super().get_context_data(**kwargs)
         context['COUNTRY_CHOICES'] = CollectorsItem.COUNTRY_CHOICES
         context['MATERIAL_CHOICES'] = CollectorsItem.MATERIAL_CHOICES
@@ -23,7 +35,7 @@ class CoinListController(ListView):
         return context
 
     def get_queryset(self):
-        # Получаем параметры фильтрации из запроса
+        """Возвращает отфильтрованный список монет на основе параметров запроса."""
         filters = {
             'full_title__icontains': self.request.GET.get('name', ''),
             'country': self.request.GET.get('country', ''),
@@ -33,5 +45,5 @@ class CoinListController(ListView):
             'state': self.request.GET.get('state', ''),
             'type_of_edition': self.request.GET.get('type_of_edition', ''),
         }
-        # Используем сервис для поиска монет
+
         return self.service.get_by_filter(filters).order_by('id')
