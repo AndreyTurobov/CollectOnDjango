@@ -21,12 +21,14 @@ from django.urls import (
     path,
     include,
 )
+from django.views.generic import RedirectView
+
 from main import controllers
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('main.urls')),
+    path('', RedirectView.as_view(url='/home/')),
     path('home/', controllers.home, name='home'),
     path('about/', controllers.about, name='about'),
 ]
