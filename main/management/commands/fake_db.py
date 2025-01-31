@@ -2,8 +2,8 @@ from django.core.management.base import BaseCommand
 
 from faker import Faker
 
-from main.models.coin_model import CoinModel
 from main.models.banknote_model import BanknoteModel
+from main.models.coin_model import CoinModel
 
 
 class Command(BaseCommand):
@@ -59,14 +59,18 @@ class Command(BaseCommand):
                     'Киргизия', 'Азербайджан', 'Армения', 'Грузия', 'Молдова',
                     'Туркменистан', 'Узбекистан', 'Латвия', 'Литва', 'Эстония', 'Польша'
                 )),
-                nominal=fake.random_element(elements=('1', '2', '5', '10', '20', '50', '100')),
-                currency=fake.random_element(elements=('рубль', 'гривна', 'тенге', 'сом', 'лари')),
+                nominal=fake.random_element(elements=(
+                    '1', '2', '5', '10', '20', '50', '100'
+                )),
+                currency=fake.random_element(elements=(
+                    'рубль', 'гривна', 'тенге', 'сом', 'лари'
+                )),
                 year=fake.random_int(min=1900, max=2023),
                 km_number=fake.bothify(text='KM# ??##'),
                 material=fake.random_element(elements=(
-                    'Серебро', 'Золото', 'Бронза', 'Никель', 'Медь', 'Латунь', 'Сталь',
-                    'Алюминий', 'Нейзильбер', 'Мельхиор', 'Цинковый сплав', 'Алюминиевая бронза',
-                    'Биметалл', 'Пластик', 'Бумага'
+                    'Серебро', 'Золото', 'Бронза', 'Никель', 'Медь', 'Латунь',
+                    'Сталь', 'Алюминий', 'Нейзильбер', 'Мельхиор', 'Цинковый сплав',
+                    'Алюминиевая бронза', 'Биметалл', 'Пластик', 'Бумага'
                 )),
                 state=fake.random_element(elements=(
                     'Proof_like', 'BUNC', 'UNC', 'AUNC', 'XF', 'VF'
@@ -81,4 +85,6 @@ class Command(BaseCommand):
                 serial_number=fake.bothify(text='SN ######'),
             )
 
-        self.stdout.write(self.style.SUCCESS(f'Успешно создано {count} записей для каждой модели.'))
+        self.stdout.write(self.style.SUCCESS(
+            f'Успешно создано {count} записей для каждой модели.'
+        ))

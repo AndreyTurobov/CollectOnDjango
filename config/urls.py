@@ -3,6 +3,7 @@ URL configuration for config project.
 
 The `urlpatterns` list routes URLs to controllers. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
+
 Examples:
 Function controllers
     1. Add an import:  from my_app import controllers
@@ -17,20 +18,19 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import (
-    path,
-    include,
-)
+from django.urls import path
 from django.views.generic import RedirectView
 
-from main import controllers
-
+from main.controllers import (
+    about,
+    home,
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', RedirectView.as_view(url='/home/')),
-    path('home/', controllers.home, name='home'),
-    path('about/', controllers.about, name='about'),
+    path('home/', home, name='home'),
+    path('about/', about, name='about'),
 ]
 
 if settings.DEBUG:
