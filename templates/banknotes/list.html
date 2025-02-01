@@ -23,7 +23,7 @@
             <p class="text-gray-700">{{ banknote.description }}</p>
 
             <!-- Кнопка "Подробно" -->
-            <a href="{% url 'banknote-detail' banknote.pk %}" class="mt-4 bg-blue-500 text-white px-4 py-2 block text-center rounded hover:bg-blue-600">
+            <a href="{% url 'banknote-detail' banknote.slug %}" class="mt-4 bg-blue-500 text-white px-4 py-2 block text-center rounded hover:bg-blue-600">
                 Подробно
             </a>
         </div>

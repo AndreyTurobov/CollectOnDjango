@@ -25,7 +25,7 @@
             <p class="text-gray-700">{{ coin.description }}</p>
 
             <!-- Кнопка "Подробно" -->
-            <a href="{% url 'coin-detail' coin.pk %}" class="mt-4 bg-blue-500 text-white px-4 py-2 block text-center rounded hover:bg-blue-600">
+            <a href="{% url 'coin-detail' coin.slug %}" class="mt-4 bg-blue-500 text-white px-4 py-2 block text-center rounded hover:bg-blue-600">
                 Подробно
             </a>
         </div>
