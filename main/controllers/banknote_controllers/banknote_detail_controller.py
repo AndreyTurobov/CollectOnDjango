@@ -10,8 +10,8 @@ class BanknoteDetailController(DetailView):
     Использует шаблон 'banknotes/detail.html' и передаёт в контекст объект 'banknote'.
     """
 
-    template_name = 'banknotes/detail.html'
-    context_object_name = 'banknote'
+    template_name = "banknotes/detail.html"
+    context_object_name = "banknote"
 
     def __init__(self, *args, **kwargs):
         """
@@ -24,4 +24,4 @@ class BanknoteDetailController(DetailView):
 
     def get_object(self, queryset=None):
         """Возвращает объект банкноты по его ID."""
-        return self.service.get_by_id(self.kwargs['pk'])
+        return self.service.get_by_slug(self.kwargs["slug"])

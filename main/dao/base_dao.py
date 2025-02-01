@@ -1,6 +1,7 @@
 from typing import (
     Any,
     Generic,
+    Optional,
     TypeVar,
 )
 
@@ -10,7 +11,7 @@ from django.db.models import (
 )
 
 # Определяем типовую переменную для модели
-T = TypeVar('T', bound=Model)
+T = TypeVar("T", bound=Model)
 
 
 class BaseDAO(Generic[T]):
@@ -36,14 +37,17 @@ class BaseDAO(Generic[T]):
         """
         return self.model.objects.all()
 
-    def get_by_id(self, pk: int) -> T:
+    def get_by_slug(self, slug: str) -> Optional[T]:
         """
-        Возвращает объект по его ID.
+        Возвращает объект по его slug.
 
-        :param pk: ID объекта.
+        :param slug: Уникальный слаг объекта.
         :return: Объект или None, если объект не найден.
         """
-        return self.model.objects.get(pk=pk)
+        try:
+            return self.model.objects.get(slug=slug)
+        except self.model.DoesNotExist:
+            return None
 
     def get_by_filter(self, filters: dict[str, Any]) -> QuerySet[T]:
         """

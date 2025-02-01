@@ -10,8 +10,8 @@ class CoinDetailController(DetailView):
     Использует шаблон 'coins/detail.html' и передаёт в контекст объект 'coin'.
     """
 
-    template_name = 'coins/detail.html'
-    context_object_name = 'coin'
+    template_name = "coins/detail.html"
+    context_object_name = "coin"
 
     def __init__(self, *args, **kwargs):
         """
@@ -24,4 +24,4 @@ class CoinDetailController(DetailView):
 
     def get_object(self, queryset=None):
         """Возвращает объект монеты по его ID."""
-        return self.service.get_by_id(self.kwargs['pk'])
+        return self.service.get_by_slug(self.kwargs["slug"])

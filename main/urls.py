@@ -12,8 +12,8 @@ from main.controllers.coin_controllers.coin_detail_controller import (
 from main.controllers.coin_controllers.coin_list_controller import CoinListController
 
 urlpatterns = [
-    path('coins/', CoinListController.as_view(), name='coin-list'),
-    path('coins/<int:pk>/', CoinDetailController.as_view(), name='coin-detail'),
-    path('banknotes/', BanknoteListController.as_view(), name='banknote-list'),
-    path('banknotes/<int:pk>/', BanknoteDetailController.as_view(), name='banknote-detail'),
+    path("coins/", CoinListController.as_view(), name="coin-list"),
+    path("coins/<slug:slug>/", CoinDetailController.as_view(), name="coin-detail"),
+    path("banknotes/", BanknoteListController.as_view(), name="banknote-list"),
+    path("banknotes/<slug:slug>/", BanknoteDetailController.as_view(), name="banknote-detail"),
 ]
