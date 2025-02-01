@@ -2,7 +2,7 @@ PYTHON = python
 MANAGE = $(PYTHON) manage.py
 RUFF = ruff
 
-.PHONY: run make-m migrate su test lint format
+.PHONY: run make-m migrate su test lint format fake
 
 run:
 	${MANAGE} runserver
@@ -24,3 +24,6 @@ lint:
 
 format:
 	${RUFF} --fix .
+
+fake:
+	${MANAGE} fake_db --count 20
