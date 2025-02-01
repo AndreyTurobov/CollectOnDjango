@@ -23,5 +23,5 @@ class BanknoteDetailController(DetailView):
         self.service = BanknoteService()
 
     def get_object(self, queryset=None):
-        """Возвращает объект банкноты по его ID."""
+        """Возвращает объект банкноты по его slug."""
         return self.service.get_by_slug(self.kwargs["slug"])

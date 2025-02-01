@@ -97,7 +97,9 @@ class Command(BaseCommand):
                 diameter=fake.pydecimal(left_digits=2, right_digits=2, positive=True),
             )
             # Формируем full_title на основе уже заполненных полей
-            coin.full_title = f"{coin.nominal} {coin.currency} {coin.year}"
+            coin.full_title = (
+                f"{coin.country}-{coin.nominal}-{coin.currency}-{coin.year}-{coin.description}"
+            )
             # Генерируем уникальный slug
             base_slug = slugify(coin.full_title)
             coin.slug = create_unique_slug(coin, base_slug)
@@ -163,7 +165,10 @@ class Command(BaseCommand):
                 serial_number=fake.bothify(text="SN ######"),
             )
             # Формируем full_title на основе уже заполненных полей
-            banknote.full_title = f"{banknote.nominal} {banknote.currency} {banknote.year}"
+            banknote.full_title = (
+                f"{banknote.country}-{banknote.nominal}-{banknote.currency}-"
+                f"{banknote.year}-{banknote.description}"
+            )
             # Генерируем уникальный slug
             base_slug = slugify(banknote.full_title)
             banknote.slug = create_unique_slug(banknote, base_slug)

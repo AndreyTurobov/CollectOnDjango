@@ -23,5 +23,5 @@ class CoinDetailController(DetailView):
         self.service = CoinService()
 
     def get_object(self, queryset=None):
-        """Возвращает объект монеты по его ID."""
+        """Возвращает объект монеты по его slug."""
         return self.service.get_by_slug(self.kwargs["slug"])
