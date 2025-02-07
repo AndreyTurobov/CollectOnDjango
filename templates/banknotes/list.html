@@ -26,6 +26,11 @@
             <a href="{% url 'banknote-detail' banknote.slug %}" class="mt-4 bg-blue-500 text-white px-4 py-2 block text-center rounded hover:bg-blue-600">
                 Подробно
             </a>
+            <!-- Кнопка "Редактировать" -->
+            <a href="{% url 'banknote-update' banknote.slug %}"
+               class="mt-4 bg-yellow-500 text-white px-4 py-2 block text-center rounded hover:bg-yellow-600">
+                Редактировать
+            </a>
         </div>
         {% endfor %}
     </div>
