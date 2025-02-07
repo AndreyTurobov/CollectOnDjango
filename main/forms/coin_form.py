@@ -8,20 +8,9 @@ class CoinForm(forms.ModelForm):
         """Метаданные формы CoinForm."""
 
         model = CoinModel
-        fields = [
-            "country",
-            "nominal",
-            "currency",
-            "year",
-            "km_number",
-            "edition",
-            "material",
-            "state",
-            "in_collect",
-            "description",
-            "type_of_edition",
-            "weight",
-            "diameter",
-            "averse_image",
-            "reverse_image",
+        exclude = [
+            "created_at",
+            "updated_at",
+            "full_title",
+            "slug",
         ]

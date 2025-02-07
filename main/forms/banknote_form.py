@@ -8,20 +8,9 @@ class BanknoteForm(forms.ModelForm):
         """Метаданные формы BanknoteForm."""
 
         model = BanknoteModel
-        fields = [
-            "country",
-            "nominal",
-            "currency",
-            "year",
-            "km_number",
-            "material",
-            "state",
-            "in_collect",
-            "description",
-            "type_of_edition",
-            "signature",
-            "size",
-            "serial_number",
-            "averse_image",
-            "reverse_image",
+        exclude = [
+            "created_at",
+            "updated_at",
+            "full_title",
+            "slug",
         ]
