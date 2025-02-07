@@ -8,4 +8,20 @@ class BanknoteForm(forms.ModelForm):
         """Метаданные формы BanknoteForm."""
 
         model = BanknoteModel
-        fields = "__all__"
+        fields = [
+            "country",
+            "nominal",
+            "currency",
+            "year",
+            "km_number",
+            "material",
+            "state",
+            "in_collect",
+            "description",
+            "type_of_edition",
+            "signature",
+            "size",
+            "serial_number",
+            "averse_image",
+            "reverse_image",
+        ]

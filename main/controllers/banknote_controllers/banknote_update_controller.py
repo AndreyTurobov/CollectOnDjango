@@ -1,11 +1,13 @@
 from django.views.generic import UpdateView
 
+from main.forms.banknote_form import BanknoteForm
 from main.services.banknote_service import BanknoteService
 
 
 class BanknoteUpdateController(UpdateView):
     template_name = "banknotes/update_banknote.html"
     success_url = "/banknotes/"
+    form_class = BanknoteForm
 
     def __init__(self, *args, **kwargs):
         """

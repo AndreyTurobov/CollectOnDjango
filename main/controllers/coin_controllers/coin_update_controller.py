@@ -1,11 +1,13 @@
 from django.views.generic import UpdateView
 
+from main.forms.coin_form import CoinForm
 from main.services.coin_service import CoinService
 
 
 class CoinUpdateController(UpdateView):
     template_name = "coins/update_coin.html"
     success_url = "/coins/"
+    form_class = CoinForm
 
     def __init__(self, *args, **kwargs):
         """
