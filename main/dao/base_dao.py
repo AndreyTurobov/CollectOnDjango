@@ -58,3 +58,7 @@ class BaseDAO(Generic[T]):
         """
         filters = {k: v for k, v in filters.items() if v}
         return self.model.objects.filter(**filters)
+
+    def create(self, data: dict[str, Any]) -> T:
+        """Создаёт новый объект в базе данных."""
+        return self.model.objects.create(**data)
