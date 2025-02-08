@@ -22,5 +22,5 @@ class BanknoteUpdateController(UpdateView):
         return self.service.get_by_slug(self.kwargs["slug"])
 
     def form_valid(self, form):
-        self.service.update(self.kwargs["slug"], form.cleaned_data)
+        self.object = form.save()
         return super().form_valid(form)
