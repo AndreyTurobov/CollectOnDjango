@@ -46,6 +46,11 @@ class CoinModel(CollectorsItem):
         options={"quality": 80},
     )
 
+    @property
+    def full_title(self) -> str:
+        desc_snippet = (self.description[:64] + " ") if self.description else ""
+        return f"{self.country} {self.nominal} {self.currency} {self.year} {desc_snippet}".strip()
+
     def __str__(self):
         return self.full_title
 

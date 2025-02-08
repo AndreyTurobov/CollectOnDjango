@@ -1,4 +1,7 @@
-from django.urls import path
+from django.urls import (
+    path,
+    re_path,
+)
 
 from main.controllers.banknote_controllers.banknote_create_controller import (
     BanknoteCreateController,
@@ -22,12 +25,20 @@ from main.controllers.coin_controllers.coin_update_controller import CoinUpdateC
 urlpatterns = [
     path("coins/", CoinListController.as_view(), name="coin-list"),
     path("coins/create/", CoinCreateController.as_view(), name="create-coin"),
-    path("coins/<slug:slug>/", CoinDetailController.as_view(), name="coin-detail"),
-    path("coins/<slug:slug>/update/", CoinUpdateController.as_view(), name="coin-update"),
+    re_path(r"^coins/(?P<slug>[-\w]+)/$", CoinDetailController.as_view(), name="coin-detail"),
+    re_path(
+        r"^coins/(?P<slug>[-\w]+)/update/$", CoinUpdateController.as_view(), name="coin-update"
+    ),
     path("banknotes/", BanknoteListController.as_view(), name="banknote-list"),
     path("banknotes/create/", BanknoteCreateController.as_view(), name="create-banknote"),
-    path("banknotes/<slug:slug>/", BanknoteDetailController.as_view(), name="banknote-detail"),
-    path(
-        "banknotes/<slug:slug>/update/", BanknoteUpdateController.as_view(), name="banknote-update"
+    re_path(
+        r"^banknotes/(?P<slug>[-\w]+)/$",
+        BanknoteDetailController.as_view(),
+        name="banknote-detail",
+    ),
+    re_path(
+        r"^banknotes/(?P<slug>[-\w]+)/update/$",
+        BanknoteUpdateController.as_view(),
+        name="banknote-update",
     ),
 ]
