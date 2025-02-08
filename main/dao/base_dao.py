@@ -58,15 +58,3 @@ class BaseDAO(Generic[T]):
         """
         filters = {k: v for k, v in filters.items() if v}
         return self.model.objects.filter(**filters)
-
-    def create(self, data: dict[str, Any]) -> T:
-        """Создаёт новый объект в базе данных."""
-        return self.model.objects.create(**data)
-
-    def update(self, slug: str, data: dict[str, Any]) -> T:
-        """Обновляет объект по slug."""
-        obj = self.model.objects.get(slug=slug)
-        for key, value in data.items():
-            setattr(obj, key, value)
-        obj.save()
-        return obj

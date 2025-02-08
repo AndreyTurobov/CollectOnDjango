@@ -50,11 +50,3 @@ class BaseService:
         :return: QuerySet отфильтрованных объектов.
         """
         return self.dao.get_by_filter(filters)
-
-    def create(self, data: dict[str, Any]) -> T:
-        """Создаёт новый объект через DAO."""
-        return self.dao.create(data)
-
-    def update(self, slug: str, data: dict[str, Any]) -> T:
-        """Обновляет объект через DAO."""
-        return self.dao.update(slug, data)
