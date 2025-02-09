@@ -1,6 +1,12 @@
 from django.db import models
 from django.utils.text import slugify
 
+from main.models.choices import (
+    COUNTRY_CHOICES,
+    MATERIAL_CHOICES,
+    STATE_CHOICES,
+    TYPE_OF_EDITION_CHOICES,
+)
 from main.models.slug_generator import generate_unique_slug
 
 
@@ -18,59 +24,6 @@ class TimedBaseModel(models.Model):
 
 class CollectorsItem(TimedBaseModel):
     """Абстрактная модель для хранения общих данных о коллекционных предметах."""
-
-    COUNTRY_CHOICES = [
-        ("Россия", "Россия"),
-        ("Украина", "Украина"),
-        ("Беларусь", "Беларусь"),
-        ("Казахстан", "Казахстан"),
-        ("Таджикистан", "Таджикистан"),
-        ("Киргизия", "Киргизия"),
-        ("Азербайджан", "Азербайджан"),
-        ("Армения", "Армения"),
-        ("Грузия", "Грузия"),
-        ("Молдова", "Молдова"),
-        ("Туркменистан", "Туркменистан"),
-        ("Узбекистан", "Узбекистан"),
-        ("Латвия", "Латвия"),
-        ("Литва", "Литва"),
-        ("Эстония", "Эстония"),
-        ("Польша", "Польша"),
-        ("Unusual", "Unusual"),
-    ]
-
-    MATERIAL_CHOICES = [
-        ("Серебро", "Серебро"),
-        ("Золото", "Золото"),
-        ("Бронза", "Бронза"),
-        ("Никель", "Никель"),
-        ("Медь", "Медь"),
-        ("Латунь", "Латунь"),
-        ("Сталь", "Сталь"),
-        ("Алюминий", "Алюминий"),
-        ("Нейзильбер", "Нейзильбер"),
-        ("Мельхиор", "Мельхиор"),
-        ("Цинковый сплав", "Цинковый сплав"),
-        ("Алюминиевая бронза", "Алюминиевая бронза"),
-        ("Биметалл", "Биметалл"),
-        ("Пластик", "Пластик"),
-        ("Бумага", "Бумага"),
-    ]
-
-    STATE_CHOICES = [
-        ("Proof_like", "Proof_like"),
-        ("BUNC", "Brilliant Uncirculated"),
-        ("UNC", "Uncirculated"),
-        ("AUNC", "About Uncirculated"),
-        ("XF", "Extra Fine"),
-        ("VF", "Very Fine"),
-    ]
-
-    TYPE_OF_EDITION_CHOICES = [
-        ("Commemorative", "Commemorative"),
-        ("Circulated", "Circulated"),
-        ("Circ/Comm", "Circulated - Commemorative"),
-    ]
 
     country = models.CharField(max_length=50, choices=COUNTRY_CHOICES, verbose_name="Страна")
     nominal = models.CharField(max_length=50, verbose_name="Номинал")
