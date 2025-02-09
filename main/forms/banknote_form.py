@@ -14,3 +14,7 @@ class BanknoteForm(forms.ModelForm):
             "full_title",
             "slug",
         ]
+        widgets = {
+            "description": forms.Textarea(attrs={"rows": 1}),
+            "placeholder": "Введите описание банкноты",
+        }
