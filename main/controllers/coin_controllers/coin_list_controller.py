@@ -1,10 +1,11 @@
+from django.db.models import Count
 from django.views.generic import ListView
 
-from main.models.choices import (
-    COUNTRY_CHOICES,
-    MATERIAL_CHOICES,
-    STATE_CHOICES,
-    TYPE_OF_EDITION_CHOICES,
+from main.models.choice_models import (
+    Country,
+    Material,
+    State,
+    TypeOfEdition,
 )
 from main.services.coin_service import CoinService
 
@@ -31,24 +32,32 @@ class CoinListController(ListView):
         self.service = CoinService()
 
     def get_context_data(self, **kwargs):
-        """Добавляет CHOICES в контекст шаблона для использования в фильтрах."""
+        """Добавляет choice_models в контекст шаблона для использования в фильтрах."""
         context = super().get_context_data(**kwargs)
-        context["COUNTRY_CHOICES"] = COUNTRY_CHOICES
-        context["MATERIAL_CHOICES"] = MATERIAL_CHOICES
-        context["STATE_CHOICES"] = STATE_CHOICES
-        context["TYPE_OF_EDITION_CHOICES"] = TYPE_OF_EDITION_CHOICES
+        context["countries"] = Country.objects.annotate(item_count=Count("coinmodel")).filter(
+            item_count__gt=0
+        )
+        context["materials"] = Material.objects.annotate(item_count=Count("coinmodel")).filter(
+            item_count__gt=0
+        )
+        context["states"] = State.objects.annotate(item_count=Count("coinmodel")).filter(
+            item_count__gt=0
+        )
+        context["type_of_editions"] = TypeOfEdition.objects.annotate(
+            item_count=Count("coinmodel")
+        ).filter(item_count__gt=0)
         return context
 
     def get_queryset(self):
         """Возвращает отфильтрованный список монет на основе параметров запроса."""
         filters = {
             "full_title__icontains": self.request.GET.get("name", ""),
-            "country": self.request.GET.get("country", ""),
+            "country__id": self.request.GET.get("country"),
             "year": self.request.GET.get("year", ""),
             "km_number": self.request.GET.get("km_number", ""),
-            "material": self.request.GET.get("material", ""),
-            "state": self.request.GET.get("state", ""),
-            "type_of_edition": self.request.GET.get("type_of_edition", ""),
+            "material__id": self.request.GET.get("material"),
+            "state__id": self.request.GET.get("state"),
+            "type_of_edition__id": self.request.GET.get("type_of_edition"),
         }
 
         return self.service.get_by_filter(filters).order_by("id")

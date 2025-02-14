@@ -15,8 +15,13 @@
                 <label for="country" class="block text-[#581c87] font-medium">Страна</label>
                 <select name="country" id="country" class="w-full px-4 py-2 rounded-lg border border-[#581c87] focus:outline-none focus:ring-2 focus:ring-[#581c87]">
                     <option value="">Все страны</option>
-                    {% for value, label in COUNTRY_CHOICES %}
-                        <option value="{{ value }}" {% if request.GET.country == value %}selected{% endif %}>{{ label }}</option>
+                    {% for country in countries %}
+                        <option
+                            value="{{ country.id }}"
+                            {% if request.GET.country|add:"0" == country.id %}selected{% endif %}
+                        >
+                            {{ country.title }} ({{ country.item_count }})
+                        </option>
                     {% endfor %}
                 </select>
             </div>
@@ -31,6 +36,7 @@
             <div>
                 <label for="km_number" class="block text-[#581c87] font-medium">KM#</label>
                 <input type="text" name="km_number" id="km_number" value="{{ request.GET.km_number }}" class="w-full px-4 py-2 rounded-lg border border-[#581c87] focus:outline-none focus:ring-2 focus:ring-[#581c87]">
+                <datalist id="kmNumbers"> {% for item in km_numbers %} <option value="{{ item.km_number }}"> {% endfor %} </datalist>
             </div>
 
             <!-- Материал (выпадающий список) -->
@@ -38,8 +44,13 @@
                 <label for="material" class="block text-[#581c87] font-medium">Материал</label>
                 <select name="material" id="material" class="w-full px-4 py-2 rounded-lg border border-[#581c87] focus:outline-none focus:ring-2 focus:ring-[#581c87]">
                     <option value="">Все материалы</option>
-                    {% for value, label in MATERIAL_CHOICES %}
-                        <option value="{{ value }}" {% if request.GET.material == value %}selected{% endif %}>{{ label }}</option>
+                    {% for material in materials %}
+                        <option
+                            value="{{ material.id }}"
+                            {% if request.GET.material|add:"0" == material.id %}selected{% endif %}
+                        >
+                            {{ material.title }} ({{ material.item_count }})
+                        </option>
                     {% endfor %}
                 </select>
             </div>
@@ -49,8 +60,13 @@
                 <label for="state" class="block text-[#581c87] font-medium">Состояние</label>
                 <select name="state" id="state" class="w-full px-4 py-2 rounded-lg border border-[#581c87] focus:outline-none focus:ring-2 focus:ring-[#581c87]">
                     <option value="">Все состояния</option>
-                    {% for value, label in STATE_CHOICES %}
-                        <option value="{{ value }}" {% if request.GET.state == value %}selected{% endif %}>{{ label }}</option>
+                    {% for state in states %}
+                        <option
+                          value="{{ state.id }}"
+                          {% if request.GET.state|add:"0" == state.id %}selected{% endif %}
+                        >
+                            {{ state.title }} ({{ state.item_count }})
+                        </option>
                     {% endfor %}
                 </select>
             </div>
@@ -60,8 +76,13 @@
                 <label for="type_of_edition" class="block text-[#581c87] font-medium">Тип издания</label>
                 <select name="type_of_edition" id="type_of_edition" class="w-full px-4 py-2 rounded-lg border border-[#581c87] focus:outline-none focus:ring-2 focus:ring-[#581c87]">
                     <option value="">Все типы</option>
-                    {% for value, label in TYPE_OF_EDITION_CHOICES %}
-                        <option value="{{ value }}" {% if request.GET.type_of_edition == value %}selected{% endif %}>{{ label }}</option>
+                    {% for type_of_edition in type_of_editions %}
+                        <option
+                          value="{{ type_of_edition.id }}"
+                          {% if request.GET.type_of_edition|add:"0" == type_of_edition.id %}selected{% endif %}
+                        >
+                            {{ type_of_edition.title }} ({{ type_of_edition.item_count }})
+                        </option>
                     {% endfor %}
                 </select>
             </div>
