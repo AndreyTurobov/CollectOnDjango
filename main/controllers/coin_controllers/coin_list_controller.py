@@ -1,4 +1,11 @@
-from django.db.models import Count
+from typing import TypeVar
+
+from django.db.models import (
+    Count,
+    Model,
+    Q,
+    QuerySet,
+)
 from django.views.generic import ListView
 
 from main.models.choice_models import (
@@ -8,6 +15,9 @@ from main.models.choice_models import (
     TypeOfEdition,
 )
 from main.services.coin_service import CoinService
+
+# Определяем типовую переменную для модели
+T = TypeVar("T", bound=Model)
 
 
 class CoinListController(ListView):
@@ -31,7 +41,7 @@ class CoinListController(ListView):
         super().__init__(*args, **kwargs)
         self.service = CoinService()
 
-    def get_context_data(self, **kwargs):
+    def get_context_data(self, **kwargs) -> dict:
         """Добавляет choice_models в контекст шаблона для использования в фильтрах."""
         context = super().get_context_data(**kwargs)
         context["countries"] = Country.objects.annotate(item_count=Count("coinmodel")).filter(
@@ -48,11 +58,11 @@ class CoinListController(ListView):
         ).filter(item_count__gt=0)
         return context
 
-    def get_queryset(self):
+    def get_queryset(self) -> QuerySet[T]:
         """Возвращает отфильтрованный список монет на основе параметров запроса."""
+        name_filter = self.request.GET.get("name", "")
         filters = {
-            "full_title__icontains": self.request.GET.get("name", ""),
-            "country__id": self.request.GET.get("country"),
+            "country__title": self.request.GET.get("country"),
             "year": self.request.GET.get("year", ""),
             "km_number": self.request.GET.get("km_number", ""),
             "material__id": self.request.GET.get("material"),
@@ -60,4 +70,15 @@ class CoinListController(ListView):
             "type_of_edition__id": self.request.GET.get("type_of_edition"),
         }
 
-        return self.service.get_by_filter(filters).order_by("id")
+        queryset: QuerySet[T] = self.service.get_by_filter(filters)
+
+        if name_filter:
+            queryset = queryset.filter(
+                Q(country__title__icontains=name_filter)
+                | Q(nominal__icontains=name_filter)
+                | Q(currency__icontains=name_filter)
+                | Q(year__icontains=name_filter)
+                | Q(description__icontains=name_filter)
+            )
+
+        return queryset.order_by("id")
