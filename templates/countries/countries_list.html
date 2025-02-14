@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container mx-auto p-4 bg-gray-400 rounded-lg shadow-md">
+    <h1 class="text-3xl font-bold mb-6 text-[#581c87]">Страны</h1>
+
+    <!-- Карточки стран -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {% for country in countries %}
+        <div class="country-card">
+            <!-- Флаг страны -->
+            <img src="{% static 'flags/'|add:country.title|add:'.jpg' %}" alt="{{ country.title }}">
+
+            <!-- Название страны -->
+            <h3>{{ country.title }}</h3>
+
+            <!-- Кнопка "Каталоги" -->
+            <button onclick="openCatalogModal('{{ country.title }}')">
+                Каталоги
+            </button>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Модальное окно для выбора каталога -->
+<div id="catalogModal" class="hidden">
+    <div class="modal-content">
+        <h2 id="catalogModalTitle"></h2>
+        <div id="catalogModalContent" class="buttons">
+            <!-- Контент подгружается динамически -->
+        </div>
+        <div class="text-center">
+            <button onclick="closeCatalogModal()" class="close">Закрыть</button>
+        </div>
+    </div>
+</div>
+<!-- Пагинация -->
+    {% include 'include/pagination.html' %}
+</div>
+
+<!-- Кнопка "Вверх" -->
+<button id="scrollToTopBtn">
+    <span>↑</span>
+</button>
+{% endblock %}

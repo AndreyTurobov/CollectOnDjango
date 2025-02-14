@@ -21,6 +21,7 @@ from main.controllers.coin_controllers.coin_detail_controller import (
 )
 from main.controllers.coin_controllers.coin_list_controller import CoinListController
 from main.controllers.coin_controllers.coin_update_controller import CoinUpdateController
+from main.controllers.country_list import CountryListView
 
 urlpatterns = [
     path("coins/", CoinListController.as_view(), name="coin-list"),
@@ -41,4 +42,5 @@ urlpatterns = [
         BanknoteUpdateController.as_view(),
         name="banknote-update",
     ),
+    path("countries/list/", CountryListView.as_view(), name="country-list"),
 ]
