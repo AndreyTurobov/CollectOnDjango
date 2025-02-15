@@ -1,5 +1,6 @@
 from typing import (
     Any,
+    Generic,
     Optional,
     TypeVar,
 )
@@ -10,14 +11,14 @@ from django.db.models import QuerySet
 T = TypeVar("T")
 
 
-class BaseService:
+class BaseService(Generic[T]):
     """
     Базовый сервис для работы с данными.
 
     Предоставляет общие методы для получения, поиска, обновления и удаления объектов.
     """
 
-    def __init__(self, dao):
+    def __init__(self, dao) -> None:
         """
         Инициализация сервиса.
 

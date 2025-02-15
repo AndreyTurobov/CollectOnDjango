@@ -9,7 +9,7 @@ class BanknoteService(BaseService):
     Наследует базовый функционал от BaseService и использует BanknoteDAO для доступа к данным.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         """
         Инициализация сервиса.
 

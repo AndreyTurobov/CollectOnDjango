@@ -1,3 +1,5 @@
+from typing import Any
+
 from django import forms
 
 from main.models.coin_model import CoinModel
@@ -7,14 +9,14 @@ class CoinForm(forms.ModelForm):
     class Meta:
         """Метаданные формы CoinForm."""
 
-        model = CoinModel
-        exclude = [
+        model: type[CoinModel] = CoinModel
+        exclude: list[str] = [
             "created_at",
             "updated_at",
             "full_title",
             "slug",
         ]
-        widgets = {
+        widgets: dict[str, Any] = {
             "country": forms.Select(attrs={"class": "form-control"}),
             "material": forms.Select(attrs={"class": "form-control"}),
             "state": forms.Select(attrs={"class": "form-control"}),

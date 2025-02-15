@@ -9,7 +9,7 @@ class BanknoteDAO(BaseDAO[Banknote]):
     Наследует базовый функционал от BaseDAO и работает с моделью Banknote.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         """
         Инициализация DAO.
 

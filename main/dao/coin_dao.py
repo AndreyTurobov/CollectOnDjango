@@ -9,7 +9,7 @@ class CoinDAO(BaseDAO[Coin]):
     Наследует базовый функционал от BaseDAO и работает с моделью Coin.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         """
         Инициализация DAO.
 

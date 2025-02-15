@@ -21,7 +21,7 @@ class BaseDAO(Generic[T]):
     Предоставляет общие методы для получения, поиска, обновления и удаления объектов.
     """
 
-    def __init__(self, model: type[T]):
+    def __init__(self, model: type[T]) -> None:
         """
         Инициализация DAO.
 

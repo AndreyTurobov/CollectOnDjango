@@ -9,7 +9,7 @@ class CoinService(BaseService):
     Наследует базовый функционал от BaseService и использует CoinDAO для доступа к данным.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         """
         Инициализация сервиса.
 
