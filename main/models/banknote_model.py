@@ -16,7 +16,7 @@ class BanknoteModel(CollectorsItem):
     Наследует общие поля и методы от CollectorsItem.
     """
 
-    signature = models.CharField(max_length=100, verbose_name="Подпись")
+    signature = models.CharField(max_length=100, verbose_name="Подпись", default="без подписи")
     size = models.CharField(max_length=50, verbose_name="Размер")
     serial_number = models.CharField(max_length=50, verbose_name="Номер")
     averse_image = ProcessedImageField(
