@@ -7,10 +7,10 @@ class BanknoteDetailController(DetailView):
     """
     Контроллер для отображения детальной информации о банкноте.
 
-    Использует шаблон 'banknotes/detail.html' и передаёт в контекст объект 'banknote'.
+    Использует шаблон 'banknotes/detail_banknote.html' и передаёт в контекст объект 'banknote'.
     """
 
-    template_name = "banknotes/detail.html"
+    template_name = "banknotes/detail_banknote.html"
     context_object_name = "banknote"
 
     def __init__(self, *args, **kwargs):

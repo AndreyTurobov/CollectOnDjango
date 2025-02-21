@@ -24,11 +24,11 @@ class BanknoteListController(ListView):
     """
     Контроллер для отображения списка банкнот.
 
-    Использует шаблон 'banknotes/list.html' и передаёт в контекст объекты 'banknotes'.
+    Использует шаблон 'banknotes/list_banknotes.html' и передаёт в контекст объекты 'banknotes'.
     Поддерживает пагинацию (по 9 элементов на странице).
     """
 
-    template_name = "banknotes/list.html"
+    template_name = "banknotes/list_banknotes.html"
     context_object_name = "banknotes"
     paginate_by = 9
 

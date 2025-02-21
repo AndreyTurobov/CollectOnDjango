@@ -24,11 +24,11 @@ class CoinListController(ListView):
     """
     Контроллер для отображения списка монет.
 
-    Использует шаблон 'coins/list.html' и передаёт в контекст объекты 'coins'.
+    Использует шаблон 'coins/list_coins.html' и передаёт в контекст объекты 'coins'.
     Поддерживает пагинацию (по 9 элементов на странице).
     """
 
-    template_name = "coins/list.html"
+    template_name = "coins/list_coins.html"
     context_object_name = "coins"
     paginate_by = 9
 

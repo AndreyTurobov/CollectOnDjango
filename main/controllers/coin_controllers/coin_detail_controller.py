@@ -7,10 +7,10 @@ class CoinDetailController(DetailView):
     """
     Контроллер для отображения детальной информации о монете.
 
-    Использует шаблон 'coins/detail.html' и передаёт в контекст объект 'coin'.
+    Использует шаблон 'coins/detail_coin.html' и передаёт в контекст объект 'coin'.
     """
 
-    template_name = "coins/detail.html"
+    template_name = "coins/detail_coin.html"
     context_object_name = "coin"
 
     def __init__(self, *args, **kwargs):
