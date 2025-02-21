@@ -5,6 +5,7 @@ from main.models.choice_models import (
     Country,
     Material,
     State,
+    Theme,
     TypeOfEdition,
 )
 from main.models.slug_generator import generate_unique_slug
@@ -32,6 +33,7 @@ class CollectorsItem(TimedBaseModel):
     km_number = models.CharField(max_length=50, verbose_name="KM#")
     material = models.ForeignKey(Material, on_delete=models.PROTECT, verbose_name="Материал")
     state = models.ForeignKey(State, on_delete=models.PROTECT, verbose_name="Состояние")
+    theme = models.ForeignKey(Theme, on_delete=models.PROTECT, verbose_name="Тема", null=True)
     in_collect = models.BooleanField(default=False, verbose_name="В коллекции")
     description = models.TextField(blank=True, verbose_name="Описание")
     slug = models.SlugField(
