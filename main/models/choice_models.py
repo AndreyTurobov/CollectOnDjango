@@ -63,3 +63,20 @@ class TypeOfEdition(models.Model):
         db_table = "type_of_editions"
         verbose_name = "Тип выпуска"
         verbose_name_plural = "Типы выпуска"
+
+
+class Theme(models.Model):
+    """Модель темы коллекционного объекта Theme."""
+
+    title = models.CharField(max_length=50, unique=True, verbose_name="Тема")
+    slug = models.SlugField(max_length=50, unique=True, verbose_name="Слаг темы")
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        """Метаданные модели Theme."""
+
+        db_table = "themes"
+        verbose_name = "Тема"
+        verbose_name_plural = "Темы"
