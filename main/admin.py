@@ -5,6 +5,7 @@ from main.models.choice_models import (
     Country,
     Material,
     State,
+    Theme,
     TypeOfEdition,
 )
 from main.models.coin_model import CoinModel
@@ -56,6 +57,11 @@ class MaterialAdmin(admin.ModelAdmin):
 
 @admin.register(State)
 class StateAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Theme)
+class ThemeAdmin(admin.ModelAdmin):
     pass
 
 
