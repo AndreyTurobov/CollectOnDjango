@@ -3,7 +3,13 @@ from django.core.management.base import BaseCommand
 from faker import Faker
 
 from main.models.banknote_model import BanknoteModel
-from main.models.choice_models import Country, Material, State, TypeOfEdition
+from main.models.choice_models import (
+    Country,
+    Material,
+    State,
+    Theme,
+    TypeOfEdition,
+)
 from main.models.coin_model import CoinModel
 
 
@@ -78,6 +84,17 @@ class Command(BaseCommand):
             ]
         ]
 
+        themes = [
+            Theme.objects.get_or_create(title=title)[0]
+            for title in [
+                "Люди",
+                "События",
+                "Флора",
+                "Фауна",
+                "Культура",
+            ]
+        ]
+
         types_of_edition = [
             TypeOfEdition.objects.get_or_create(title=title)[0]
             for title in ["Commemorative", "Circulated", "Circulated/Commemorative"]
@@ -92,6 +109,7 @@ class Command(BaseCommand):
                 km_number=fake.bothify(text="KM# ??##"),
                 material=fake.random_element(elements=materials),
                 state=fake.random_element(elements=states),
+                theme=fake.random_element(elements=themes),
                 in_collect=fake.boolean(),
                 description=fake.text(max_nb_chars=200),
                 type_of_edition=fake.random_element(elements=types_of_edition),
@@ -112,6 +130,7 @@ class Command(BaseCommand):
                 km_number=fake.bothify(text="KM# ??##"),
                 material=fake.random_element(elements=materials),
                 state=fake.random_element(elements=states),
+                theme=fake.random_element(elements=themes),
                 in_collect=fake.boolean(),
                 description=fake.text(max_nb_chars=200),
                 type_of_edition=fake.random_element(elements=types_of_edition),
