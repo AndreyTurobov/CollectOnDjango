@@ -12,6 +12,7 @@ from main.models.choice_models import (
     Country,
     Material,
     State,
+    Theme,
     TypeOfEdition,
 )
 from main.services.banknote_service import BanknoteService
@@ -41,21 +42,20 @@ class BanknoteListController(ListView):
         super().__init__(*args, **kwargs)
         self.service = BanknoteService()
 
+    def _get_annotated_models(self, model_class: type[Model]) -> QuerySet:
+        """Возвращает модели с аннотацией item_count."""
+        return model_class.objects.annotate(item_count=Count("banknotemodel")).filter(
+            item_count__gt=0
+        )
+
     def get_context_data(self, **kwargs) -> dict:
         """Добавляет choice_models в контекст шаблона для использования в фильтрах."""
         context = super().get_context_data(**kwargs)
-        context["countries"] = Country.objects.annotate(item_count=Count("banknotemodel")).filter(
-            item_count__gt=0
-        )
-        context["materials"] = Material.objects.annotate(item_count=Count("banknotemodel")).filter(
-            item_count__gt=0
-        )
-        context["states"] = State.objects.annotate(item_count=Count("banknotemodel")).filter(
-            item_count__gt=0
-        )
-        context["type_of_editions"] = TypeOfEdition.objects.annotate(
-            item_count=Count("banknotemodel")
-        ).filter(item_count__gt=0)
+        context["countries"] = self._get_annotated_models(Country)
+        context["materials"] = self._get_annotated_models(Material)
+        context["states"] = self._get_annotated_models(State)
+        context["type_of_editions"] = self._get_annotated_models(TypeOfEdition)
+        context["theme"] = self._get_annotated_models(Theme)
         return context
 
     def get_queryset(self) -> QuerySet[T]:
