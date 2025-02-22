@@ -15,7 +15,24 @@ from main.controllers.banknote_controllers.banknote_list_controller import (
 from main.controllers.banknote_controllers.banknote_update_controller import (
     BanknoteUpdateController,
 )
-from main.controllers.choices_controllers.country_list_controller import CountryListView
+from main.controllers.choices_controllers.country_create_controller import (
+    CountryCreateController,
+)
+from main.controllers.choices_controllers.country_list_controller import (
+    CountryListController,
+)
+from main.controllers.choices_controllers.material_create_controller import (
+    MaterialCreateController,
+)
+from main.controllers.choices_controllers.state_create_controller import (
+    StateCreateController,
+)
+from main.controllers.choices_controllers.theme_create_controller import (
+    ThemeCreateController,
+)
+from main.controllers.choices_controllers.type_of_edition_create_controller import (
+    TypeOfEditionCreateController,
+)
 from main.controllers.coin_controllers.coin_create_controller import CoinCreateController
 from main.controllers.coin_controllers.coin_detail_controller import (
     CoinDetailController,
@@ -48,5 +65,10 @@ urlpatterns = [
         BanknoteUpdateController.as_view(),
         name="banknote-update",
     ),
-    path("countries/list/", CountryListView.as_view(), name="country-list"),
+    path("countries/list/", CountryListController.as_view(), name="country-list"),
+    path("create-country/", CountryCreateController.as_view(), name="create-country"),
+    path("create-material/", MaterialCreateController.as_view(), name="create-material"),
+    path("create-state/", StateCreateController.as_view(), name="create-state"),
+    path("create-theme/", ThemeCreateController.as_view(), name="create-theme"),
+    path("create-edition/", TypeOfEditionCreateController.as_view(), name="create-edition"),
 ]
