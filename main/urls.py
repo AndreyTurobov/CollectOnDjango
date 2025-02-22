@@ -21,14 +21,20 @@ from main.controllers.coin_controllers.coin_detail_controller import (
 )
 from main.controllers.coin_controllers.coin_list_controller import CoinListController
 from main.controllers.coin_controllers.coin_update_controller import CoinUpdateController
-from main.controllers.country_list import CountryListView
+from main.controllers.country_list_controller import CountryListView
 
 urlpatterns = [
     path("coins/", CoinListController.as_view(), name="coin-list"),
     path("coins/create/", CoinCreateController.as_view(), name="create-coin"),
-    re_path(r"^coins/(?P<slug>[-\w]+)/$", CoinDetailController.as_view(), name="coin-detail"),
     re_path(
-        r"^coins/(?P<slug>[-\w]+)/update/$", CoinUpdateController.as_view(), name="coin-update"
+        r"^coins/(?P<slug>[-\w]+)/$",
+        CoinDetailController.as_view(),
+        name="coin-detail",
+    ),
+    re_path(
+        r"^coins/(?P<slug>[-\w]+)/update/$",
+        CoinUpdateController.as_view(),
+        name="coin-update",
     ),
     path("banknotes/", BanknoteListController.as_view(), name="banknote-list"),
     path("banknotes/create/", BanknoteCreateController.as_view(), name="create-banknote"),
