@@ -3,15 +3,13 @@ from main.services.base_service import BaseService
 
 
 class BanknoteService(BaseService):
-    """
-    Сервис для работы с данными банкнот.
+    """Сервис для работы с данными банкнот.
 
     Наследует базовый функционал от BaseService и использует BanknoteDAO для доступа к данным.
     """
 
     def __init__(self) -> None:
-        """
-        Инициализация сервиса.
+        """Инициализация сервиса.
 
         Создаёт экземпляр BanknoteDAO для работы с данными банкнот.
         """
