@@ -6,7 +6,7 @@
         <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
             <!-- Название -->
             <div>
-                <label for="name" class="block text-[#581c87] font-medium">Название (номинал, валюта, описание)</label>
+                <label for="name" class="block text-[#581c87] font-medium">Название</label>
                 <input type="text" name="name" id="name" value="{{ request.GET.name }}" class="w-full px-4 py-2 rounded-lg border border-[#581c87] focus:outline-none focus:ring-2 focus:ring-[#581c87]">
             </div>
 
@@ -17,8 +17,8 @@
                     <option value="">Все страны</option>
                     {% for country in countries %}
                         <option
-                            value="{{ country.id }}"
-                            {% if request.GET.country|add:"0" == country.id %}selected{% endif %}
+                          value="{{ country.id }}"
+                          {% if request.GET.country|add:"0" == country.id %}selected{% endif %}
                         >
                             {{ country.title }} ({{ country.item_count }})
                         </option>
@@ -66,6 +66,22 @@
                           {% if request.GET.state|add:"0" == state.id %}selected{% endif %}
                         >
                             {{ state.title }} ({{ state.item_count }})
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Тема (выпадающий список) -->
+            <div>
+                <label for="theme" class="block text-[#581c87] font-medium">Тема</label>
+                <select name="theme" id="theme" class="w-full px-4 py-2 rounded-lg border border-[#581c87] focus:outline-none focus:ring-2 focus:ring-[#581c87]">
+                    <option value="">Все темы</option>
+                    {% for theme in themes %}
+                        <option
+                          value="{{ theme.id }}"
+                          {% if request.GET.theme|add:"0" == theme.id %}selected{% endif %}
+                        >
+                            {{ theme.title }} ({{ theme.item_count }})
                         </option>
                     {% endfor %}
                 </select>
