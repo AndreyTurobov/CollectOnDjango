@@ -52,7 +52,7 @@ class CoinListController(ListView):
         context["countries"] = self._get_annotated_models(Country)
         context["materials"] = self._get_annotated_models(Material)
         context["states"] = self._get_annotated_models(State)
-        context["theme"] = self._get_annotated_models(Theme)
+        context["themes"] = self._get_annotated_models(Theme)
         context["type_of_editions"] = self._get_annotated_models(TypeOfEdition)
         return context
 
@@ -65,6 +65,7 @@ class CoinListController(ListView):
             "km_number": self.request.GET.get("km_number", ""),
             "material__id": self.request.GET.get("material"),
             "state__id": self.request.GET.get("state"),
+            "theme__id": self.request.GET.get("theme"),
             "type_of_edition__id": self.request.GET.get("type_of_edition"),
         }
 

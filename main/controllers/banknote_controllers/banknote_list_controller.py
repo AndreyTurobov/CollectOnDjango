@@ -54,8 +54,8 @@ class BanknoteListController(ListView):
         context["countries"] = self._get_annotated_models(Country)
         context["materials"] = self._get_annotated_models(Material)
         context["states"] = self._get_annotated_models(State)
+        context["themes"] = self._get_annotated_models(Theme)
         context["type_of_editions"] = self._get_annotated_models(TypeOfEdition)
-        context["theme"] = self._get_annotated_models(Theme)
         return context
 
     def get_queryset(self) -> QuerySet[T]:
@@ -67,6 +67,7 @@ class BanknoteListController(ListView):
             "km_number": self.request.GET.get("km_number"),
             "material__id": self.request.GET.get("material"),
             "state__id": self.request.GET.get("state"),
+            "theme__id": self.request.GET.get("theme"),
             "type_of_edition__id": self.request.GET.get("type_of_edition"),
         }
 
