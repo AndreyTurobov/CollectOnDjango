@@ -15,13 +15,13 @@ from main.controllers.banknote_controllers.banknote_list_controller import (
 from main.controllers.banknote_controllers.banknote_update_controller import (
     BanknoteUpdateController,
 )
+from main.controllers.choices_controllers.country_list_controller import CountryListView
 from main.controllers.coin_controllers.coin_create_controller import CoinCreateController
 from main.controllers.coin_controllers.coin_detail_controller import (
     CoinDetailController,
 )
 from main.controllers.coin_controllers.coin_list_controller import CoinListController
 from main.controllers.coin_controllers.coin_update_controller import CoinUpdateController
-from main.controllers.country_list_controller import CountryListView
 
 urlpatterns = [
     path("coins/", CoinListController.as_view(), name="coin-list"),
