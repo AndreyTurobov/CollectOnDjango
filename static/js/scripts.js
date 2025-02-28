@@ -25,12 +25,21 @@ function openModal(action) {
     const modal = document.getElementById('modal');
     const modalTitle = document.getElementById('modal-title');
     const modalContent = document.getElementById('modal-content');
-    const urls = document.getElementById('urls').dataset;  // Получаем URL-адреса
+    const urls = document.getElementById('urls').dataset;
 
     // Очищаем предыдущий контент
     modalContent.innerHTML = '';
 
-    if (action === 'create') {
+    if (action === 'add-value') {
+        modalTitle.textContent = 'Добавить (страну, материал, состояние, тему, тип издания)';
+        modalContent.innerHTML = `
+            <a href="${urls.createCountry}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Страна</a>
+            <a href="${urls.createMaterial}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Материал</a>
+            <a href="${urls.createState}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Состояние</a>
+            <a href="${urls.createTheme}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Тема</a>
+            <a href="${urls.createEdition}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Тип выпуска</a>
+        `;
+    } else if (action === 'create') {
         modalTitle.textContent = 'Добавить в каталог';
         modalContent.innerHTML = `
             <a href="${urls.createCoin}" 
@@ -42,6 +51,7 @@ function openModal(action) {
             Банкнота
             </a>
         `;
+
     } else if (action === 'edit') {
         modalTitle.textContent = 'Редактировать каталог';
         modalContent.innerHTML = `

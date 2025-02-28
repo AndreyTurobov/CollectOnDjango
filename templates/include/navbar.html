@@ -4,17 +4,32 @@
         <li><a href="#" class="text-[#eff6ff] bg-[#1e3a8a] px-4 py-2 block rounded hover:bg-[#075985]">Добавить в коллекцию</a></li>
         <li><a href="#" class="text-[#eff6ff] bg-[#1e3a8a] px-4 py-2 block rounded hover:bg-[#075985]">Редактировать коллекцию</a></li>
         <li>
-            <button onclick="openModal('create')" class="w-full text-[#eff6ff] bg-[#1e3a8a] px-4 py-2 block rounded hover:bg-[#075985]">
+            <button
+                onclick="openModal('create')"
+                class="w-full text-[#eff6ff] bg-[#1e3a8a] px-4 py-2 block rounded hover:bg-[#075985]"
+            >
                 Добавить в каталог
             </button>
         </li>
         <li>
-            <button onclick="openModal('edit')" class="w-full text-[#eff6ff] bg-[#1e3a8a] px-4 py-2 block rounded hover:bg-[#075985]">
+            <button
+                onclick="openModal('edit')"
+                class="w-full text-[#eff6ff] bg-[#1e3a8a] px-4 py-2 block rounded hover:bg-[#075985]"
+            >
                 Редактировать каталог
+            </button>
+        </li>
+        <li>
+            <button
+                onclick="openModal('add-value')"
+                class="w-full text-[#eff6ff] bg-[#1e3a8a] px-4 py-2 block rounded hover:bg-[#075985]"
+            >
+                Добавить (страну, материал, состояние, тему, тип издания)
             </button>
         </li>
     </ul>
 </nav>
+
 
 <!-- Модальное окно (универсальное) -->
 <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 hidden">
@@ -31,9 +46,15 @@
     </div>
 </div>
 
-<div id="urls" data-create-coin="{% url 'create-coin' %}"
-                 data-create-banknote="{% url 'create-banknote' %}"
-                 data-coin-list="{% url 'coin-list' %}"
-                 data-banknote-list="{% url 'banknote-list' %}"
-                 style="display: none;">
+<div id="urls"
+     data-create-coin="{% url 'create-coin' %}"
+     data-create-banknote="{% url 'create-banknote' %}"
+     data-coin-list="{% url 'coin-list' %}"
+     data-banknote-list="{% url 'banknote-list' %}"
+     data-create-country="{% url 'create-country' %}"
+     data-create-material="{% url 'create-material' %}"
+     data-create-state="{% url 'create-state' %}"
+     data-create-theme="{% url 'create-theme' %}"
+     data-create-edition="{% url 'create-edition' %}"
+     style="display: none;">
 </div>
