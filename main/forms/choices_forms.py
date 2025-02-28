@@ -14,7 +14,7 @@ class CountryForm(forms.ModelForm):
         """Метаданные формы CountryForm."""
 
         model = Country
-        fields = ["title"]
+        fields = ["title", "flag"]
         widgets = {
             "title": forms.TextInput(
                 attrs={
@@ -22,7 +22,13 @@ class CountryForm(forms.ModelForm):
                     "class": "w-full px-4 py-2 rounded-lg border border-[#581c87]",
                     "placeholder": "Страна",
                 }
-            )
+            ),
+            "flag": forms.FileInput(
+                attrs={
+                    "class": "w-full px-4 py-2 rounded-lg border border-[#581c87]",
+                    "placeholder": "Флаг",
+                }
+            ),
         }
 
 
