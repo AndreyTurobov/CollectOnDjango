@@ -1,3 +1,5 @@
+import os
+
 from django.db import models
 from django.utils.text import slugify
 
@@ -6,6 +8,18 @@ class Country(models.Model):
     """Модель страна происхождения коллекционного объекта Country."""
 
     title = models.CharField(max_length=50, unique=True, verbose_name="Страна")
+    flag = models.ImageField(
+        upload_to="flags/",
+        verbose_name="Флаг",
+        default="flags/default_flag.jpg",
+        blank=True,
+        null=True,
+    )
+
+    def save(self, *args, **kwargs):
+        if self.flag and self.title:
+            new_filename = f"{self.title}{os.path.splitext(self.flag.name)[1]}"
+            self.flag.name = new_filename
 
     def __str__(self):
         return self.title
