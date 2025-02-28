@@ -11,7 +11,7 @@
         {% for country in countries %}
         <div class="country-card">
             <!-- Флаг страны -->
-            <img src="{% static 'flags/'|add:country.title|add:'.jpg' %}" alt="{{ country.title }}">
+            <img src="{{ country.flag.url }}" alt="{{ country.title }}">
 
             <!-- Название страны -->
             <h3>{{ country.title }}</h3>
