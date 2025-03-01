@@ -57,6 +57,15 @@ class BaseDAO(Generic[T]):
     def get_new_items(self) -> QuerySet[T]:
         """Возвращает список объектов, отсортированный по дате создания (самые новые).
 
+        :param in_collect: Параметр для фильтрации.
         :return: QuerySet отфильтрованных объектов.
         """
         return self.model.objects.filter(in_collect=True).order_by("-created_at")[:10]
+
+    def get_planned_items(self) -> QuerySet[T]:
+        """Возвращает список объектов каталога, планируемых к приобретению в коллекцию.
+
+        :param in_collect: Параметр для фильтрации.
+        :return: QuerySet отфильтрованных объектов.
+        """
+        return self.model.objects.filter(in_collect=False).order_by("-created_at")
