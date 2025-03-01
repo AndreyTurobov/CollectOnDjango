@@ -64,6 +64,30 @@ function openModal(action) {
             Банкноты
             </a>
         `;
+    } else if (action === 'new') {
+        modalTitle.textContent = 'Новинки';
+        modalContent.innerHTML = `
+            <a href="${urls.coinNew}" 
+               class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                Монеты
+            </a>
+            <a href="${urls.banknoteNew}" 
+               class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                Банкноты
+            </a>
+        `;
+    } else if (action === 'plan') {
+        modalTitle.textContent = 'Планы';
+        modalContent.innerHTML = `
+            <a href="${urls.coinPlan}" 
+               class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                Монеты
+            </a>
+            <a href="${urls.banknotePlan}" 
+               class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                Банкноты
+            </a>
+        `;
     }
 
     modal.classList.remove('hidden');
@@ -98,3 +122,4 @@ function openCatalogModal(country) {
 function closeCatalogModal() {
     document.getElementById('catalogModal').classList.remove('active');
 }
+
