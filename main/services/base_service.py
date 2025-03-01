@@ -46,3 +46,10 @@ class BaseService(Generic[T]):
         :return: QuerySet отфильтрованных объектов.
         """
         return self.dao.get_by_filter(filters)
+
+    def get_new_items(self, *args, **kwargs) -> QuerySet[T]:
+        """Возвращает новые объекты.
+
+        :return: QuerySet новых объектов.
+        """
+        return self.dao.get_new(*args, **kwargs)
