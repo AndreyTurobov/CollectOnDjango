@@ -14,6 +14,6 @@ class CoinNewController(ListView):
     paginate_by = 9
     service = CoinService()
 
-    def get_queryset(self):
+    def get_queryset(self) -> list:
         """Возвращает последние 10 монет, добавленных в коллекцию."""
         return self.service.get_new_items()

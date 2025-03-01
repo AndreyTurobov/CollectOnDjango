@@ -14,6 +14,6 @@ class BanknoteNewController(ListView):
     paginate_by = 9
     service = BanknoteService()
 
-    def get_queryset(self):
+    def get_queryset(self) -> list:
         """Возвращает последние 10 банкнот, добавленных в коллекцию."""
         return self.service.get_new_items()
