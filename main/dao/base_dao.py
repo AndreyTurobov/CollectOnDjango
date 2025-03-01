@@ -53,3 +53,10 @@ class BaseDAO(Generic[T]):
         """
         filters = {k: v for k, v in filters.items() if v}
         return self.model.objects.filter(**filters)
+
+    def get_new_items(self) -> QuerySet[T]:
+        """Возвращает список объектов, отсортированный по дате создания (самые новые).
+
+        :return: QuerySet отфильтрованных объектов.
+        """
+        return self.model.objects.filter(in_collect=True).order_by("-created_at")[:10]
