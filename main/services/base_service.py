@@ -53,3 +53,10 @@ class BaseService(Generic[T]):
         :return: QuerySet новых объектов.
         """
         return self.dao.get_new(*args, **kwargs)
+
+    def get_planned_items(self, *args, **kwargs) -> QuerySet[T]:
+        """Возвращает планируемые к приобретению объекты.
+
+        :return: QuerySet планируемых объектов.
+        """
+        return self.dao.get_planned(*args, **kwargs)
