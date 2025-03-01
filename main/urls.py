@@ -12,6 +12,10 @@ from main.controllers.banknote_controllers.banknote_detail_controller import (
 from main.controllers.banknote_controllers.banknote_list_controller import (
     BanknoteListController,
 )
+from main.controllers.banknote_controllers.banknote_new_controller import BanknoteNewController
+from main.controllers.banknote_controllers.banknote_planned_controller import (
+    BanknotePlannedController,
+)
 from main.controllers.banknote_controllers.banknote_update_controller import (
     BanknoteUpdateController,
 )
@@ -38,6 +42,8 @@ from main.controllers.coin_controllers.coin_detail_controller import (
     CoinDetailController,
 )
 from main.controllers.coin_controllers.coin_list_controller import CoinListController
+from main.controllers.coin_controllers.coin_new_controller import CoinNewController
+from main.controllers.coin_controllers.coin_planned_controller import CoinPlannedController
 from main.controllers.coin_controllers.coin_update_controller import CoinUpdateController
 
 urlpatterns = [
@@ -71,4 +77,8 @@ urlpatterns = [
     path("create-state/", StateCreateController.as_view(), name="create-state"),
     path("create-theme/", ThemeCreateController.as_view(), name="create-theme"),
     path("create-edition/", TypeOfEditionCreateController.as_view(), name="create-edition"),
+    path("coins/new/", CoinNewController.as_view(), name="coin-new"),
+    path("coins/plan/", CoinPlannedController.as_view(), name="coin-plan"),
+    path("banknotes/new/", BanknoteNewController.as_view(), name="banknote-new"),
+    path("banknotes/plan/", BanknotePlannedController.as_view(), name="banknote-plan"),
 ]
