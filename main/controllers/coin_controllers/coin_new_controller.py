@@ -1,19 +1,22 @@
-from django.views.generic import ListView
+from django.db.models import QuerySet
 
-from main.services.coin_service import CoinService
+from main.controllers.coin_controllers.coin_list_controller import CoinListController
 
 
-class CoinNewController(ListView):
-    """Контроллер для отображения последних 10 монет, добавленных в коллекцию.
+class CoinNewController(CoinListController):
+    """Контроллер для отображения монет которые планируется добавить в коллекцию.
 
     Использует CoinService для получения данных.
     """
 
     template_name = "coins/new_coins.html"
-    context_object_name = "coins"
-    paginate_by = 9
-    service = CoinService()
 
-    def get_queryset(self) -> list:
-        """Возвращает последние 10 монет, добавленных в коллекцию."""
-        return self.service.get_new_items()
+    def get_queryset(self) -> QuerySet:
+        """Возвращает QuerySet монет, которые планируются добавить в коллекцию."""
+        qs = self.service.get_new_items()
+        return qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Новые монеты"
+        return context

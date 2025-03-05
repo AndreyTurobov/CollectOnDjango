@@ -1,19 +1,22 @@
-from django.views.generic import ListView
+from django.db.models import QuerySet
 
-from main.services.banknote_service import BanknoteService
+from main.controllers.banknote_controllers.banknote_list_controller import BanknoteListController
 
 
-class BanknoteNewController(ListView):
-    """Контроллер для отображения последних 10 банкнот, добавленных в коллекцию.
+class BanknoteNewController(BanknoteListController):
+    """Контроллер для отображения монет которые планируется добавить в коллекцию.
 
-    Использует BanknoteService для получения данных.
+    Использует CoinService для получения данных.
     """
 
     template_name = "banknotes/new_banknotes.html"
-    context_object_name = "banknotes"
-    paginate_by = 9
-    service = BanknoteService()
 
-    def get_queryset(self) -> list:
-        """Возвращает последние 10 банкнот, добавленных в коллекцию."""
-        return self.service.get_new_items()
+    def get_queryset(self) -> QuerySet:
+        """Возвращает QuerySet монет, которые планируются добавить в коллекцию."""
+        qs = self.service.get_new_items()
+        return qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Новые банкноты"
+        return context
