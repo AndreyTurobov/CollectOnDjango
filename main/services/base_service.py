@@ -47,16 +47,10 @@ class BaseService(Generic[T]):
         """
         return self.dao.get_by_filter(filters)
 
-    def get_new_items(self, *args, **kwargs) -> list[T]:
-        """Возвращает новые объекты.
+    def get_new_items(self) -> QuerySet[T]:
+        """Возвращает QuerySet новых объектов."""
+        return self.dao.get_new_items()
 
-        :return: list новых объектов.
-        """
-        return self.dao.get_new(*args, **kwargs)
-
-    def get_planned_items(self, *args, **kwargs) -> list[T]:
-        """Возвращает планируемые к приобретению объекты.
-
-        :return: list планируемых объектов.
-        """
-        return self.dao.get_planned(*args, **kwargs)
+    def get_planned_items(self) -> QuerySet[T]:
+        """Возвращает QuerySet планируемых объектов."""
+        return self.dao.get_planned_items()
