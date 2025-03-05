@@ -48,6 +48,8 @@ from main.controllers.coin_controllers.coin_update_controller import CoinUpdateC
 
 urlpatterns = [
     path("coins/", CoinListController.as_view(), name="coin-list"),
+    path("coins/new/", CoinNewController.as_view(), name="coin-new"),
+    path("coins/plan/", CoinPlannedController.as_view(), name="coin-plan"),
     path("coins/create/", CoinCreateController.as_view(), name="create-coin"),
     re_path(
         r"^coins/(?P<slug>[-\w]+)/$",
@@ -60,6 +62,8 @@ urlpatterns = [
         name="coin-update",
     ),
     path("banknotes/", BanknoteListController.as_view(), name="banknote-list"),
+    path("banknotes/new/", BanknoteNewController.as_view(), name="banknote-new"),
+    path("banknotes/plan/", BanknotePlannedController.as_view(), name="banknote-plan"),
     path("banknotes/create/", BanknoteCreateController.as_view(), name="create-banknote"),
     re_path(
         r"^banknotes/(?P<slug>[-\w]+)/$",
@@ -77,8 +81,4 @@ urlpatterns = [
     path("create-state/", StateCreateController.as_view(), name="create-state"),
     path("create-theme/", ThemeCreateController.as_view(), name="create-theme"),
     path("create-edition/", TypeOfEditionCreateController.as_view(), name="create-edition"),
-    path("coins/new/", CoinNewController.as_view(), name="coin-new"),
-    path("coins/plan/", CoinPlannedController.as_view(), name="coin-plan"),
-    path("banknotes/new/", BanknoteNewController.as_view(), name="banknote-new"),
-    path("banknotes/plan/", BanknotePlannedController.as_view(), name="banknote-plan"),
 ]
