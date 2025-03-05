@@ -1,18 +1,22 @@
-from django.views.generic import ListView
+from django.db.models import QuerySet
 
-from main.services.banknote_service import BanknoteService
+from main.controllers.banknote_controllers.banknote_list_controller import BanknoteListController
 
 
-class BanknotePlannedController(ListView):
-    """Контроллер для отображения банкнот, которые планируются добавить в коллекцию.
+class BanknotePlannedController(BanknoteListController):
+    """Контроллер для отображения монет которые планируется добавить в коллекцию.
 
-    Использует BanknoteService для получения данных.
+    Использует CoinService для получения данных.
     """
 
-    template_name = "banknotes/banknote_planned.html"
-    context_object_name = "banknotes"
-    service = BanknoteService()
+    template_name = "banknotes/plan_banknotes.html"
 
-    def get_queryset(self) -> list:
-        """Возвращает банкноты, которые планируются добавить в коллекцию."""
-        return self.service.get_planned_items()
+    def get_queryset(self) -> QuerySet:
+        """Возвращает QuerySet монет, которые планируются добавить в коллекцию."""
+        qs = self.service.get_planned_items()
+        return qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Планируемые банкноты"
+        return context

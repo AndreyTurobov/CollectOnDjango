@@ -1,18 +1,22 @@
-from django.views.generic import ListView
+from django.db.models import QuerySet
 
-from main.services.coin_service import CoinService
+from main.controllers.coin_controllers.coin_list_controller import CoinListController
 
 
-class CoinPlannedController(ListView):
+class CoinPlannedController(CoinListController):
     """Контроллер для отображения монет которые планируется добавить в коллекцию.
 
     Использует CoinService для получения данных.
     """
 
-    template_name = "coins/coin_planned.html"
-    context_object_name = "coins"
-    service = CoinService()
+    template_name = "coins/plan_coins.html"
 
-    def get_queryset(self) -> list:
-        """Возвращает монеты которые планируется добавить в коллекцию."""
-        return self.service.get_planned_items()
+    def get_queryset(self) -> QuerySet:
+        """Возвращает QuerySet монет, которые планируются добавить в коллекцию."""
+        qs = self.service.get_planned_items()
+        return qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Планируемые монеты"
+        return context
