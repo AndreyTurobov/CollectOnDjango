@@ -1,0 +1,14 @@
+<nav class="bg-[#f0f9ff] p-4 shadow-sm">
+    <ol class="container mx-auto flex space-x-2 text-sm text-[#075985]">
+        {% for crumb in breadcrumbs %}
+            <li class="flex items-center">
+                {% if not forloop.last %}
+                    <a href="{{ crumb.url }}" class="hover:text-[#1e3a8a]">{{ crumb.title }}</a>
+                    <span class="mx-2">/</span>
+                {% else %}
+                    <span class="text-[#1e3a8a] font-semibold">{{ crumb.title }}</span>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ol>
+</nav>
