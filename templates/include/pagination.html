@@ -1,13 +1,32 @@
 {% if is_paginated %}
 <div class="flex items-center justify-center mt-8">
-    <div class="flex items-center space-x-4">
+    <div class="flex items-center space-x-2">
         {% if page_obj.has_previous %}
             <a href="?page={{ page_obj.previous_page_number }}" class="text-[#f0f9ff] bg-[#075985] px-4 py-2 rounded hover:bg-[#1e3a8a]">← Назад</a>
         {% endif %}
 
-        <span class="text-[#075985] font-bold">
-            Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
-        </span>
+        <!-- Список страниц -->
+        <div class="flex items-center space-x-2">
+            {% if page_obj.number > 4 %}
+                <a href="?page=1" class="text-[#075985] hover:text-[#1e3a8a]">1</a>
+                <span class="text-[#075985]">...</span>
+            {% endif %}
+
+            {% for num in page_obj.paginator.page_range %}
+                {% if num >= page_obj.number|add:"-3" and num <= page_obj.number|add:"3" %}
+                    <a href="?page={{ num }}" class="px-3 py-2 rounded {% if num == page_obj.number %}bg-[#075985] text-[#f0f9ff]{% else %}text-[#075985] hover:bg-[#1e3a8a] hover:text-[#f0f9ff]{% endif %}">
+                        {{ num }}
+                    </a>
+                {% endif %}
+            {% endfor %}
+
+            {% if page_obj.number < page_obj.paginator.num_pages|add:"-3" %}
+                <span class="text-[#075985]">...</span>
+                <a href="?page={{ page_obj.paginator.num_pages }}" class="text-[#075985] hover:text-[#1e3a8a]">
+                    {{ page_obj.paginator.num_pages }}
+                </a>
+            {% endif %}
+        </div>
 
         {% if page_obj.has_next %}
             <a href="?page={{ page_obj.next_page_number }}" class="text-[#f0f9ff] bg-[#075985] px-4 py-2 rounded hover:bg-[#1e3a8a]">Вперёд →</a>
