@@ -21,6 +21,18 @@ class BanknoteUpdateController(UpdateView):
     def get_object(self, queryset=None):
         return self.service.get_by_slug(self.kwargs["slug"])
 
+    def get_context_data(self, **kwargs):
+        """Добавляет контекст для использования в шаблоне."""
+        context = super().get_context_data(**kwargs)
+        banknote = self.get_object()
+        context["breadcrumbs"] = [
+            {"title": "Главная", "url": "/"},
+            {"title": "Банкноты", "url": "/banknotes/"},
+            {"title": f"Редактировать банкноту: {banknote.full_title}", "url": ""},
+        ]
+        return context
+
     def form_valid(self, form):
+        """Сохраняет изменения в данных о банкноте."""
         self.object = form.save()
         return super().form_valid(form)

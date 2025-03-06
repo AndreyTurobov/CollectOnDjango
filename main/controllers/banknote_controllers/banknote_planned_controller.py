@@ -17,6 +17,12 @@ class BanknotePlannedController(BanknoteListController):
         return qs
 
     def get_context_data(self, **kwargs):
+        """Добавляет контекст для использования в шаблоне."""
         context = super().get_context_data(**kwargs)
         context["title"] = "Планируемые банкноты"
+        context["breadcrumbs"] = [
+            {"title": "Главная", "url": "/"},
+            {"title": "Банкноты", "url": "/banknotes/"},
+            {"title": "Планируемые банкноты", "url": ""},
+        ]
         return context

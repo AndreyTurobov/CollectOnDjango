@@ -17,6 +17,12 @@ class BanknoteNewController(BanknoteListController):
         return qs
 
     def get_context_data(self, **kwargs):
+        """Добавляет контекст для использования в шаблоне."""
         context = super().get_context_data(**kwargs)
         context["title"] = "Новые банкноты"
+        context["breadcrumbs"] = [
+            {"title": "Главная", "url": "/"},
+            {"title": "Банкноты", "url": "/banknotes/"},
+            {"title": "Новые банкноты", "url": ""},
+        ]
         return context
