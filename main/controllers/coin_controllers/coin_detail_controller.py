@@ -25,3 +25,14 @@ class CoinDetailController(DetailView):
     def get_object(self, queryset=None):
         """Возвращает объект монеты по его slug."""
         return self.service.get_by_slug(self.kwargs["slug"])
+
+    def get_context_data(self, **kwargs):
+        """Добавляет контекст для использования в шаблоне."""
+        context = super().get_context_data(**kwargs)
+        coin = self.get_object()
+        context["breadcrumbs"] = [
+            {"title": "Главная", "url": "/"},
+            {"title": "Монеты", "url": "/coins/"},
+            {"title": coin.full_title, "url": ""},
+        ]
+        return context

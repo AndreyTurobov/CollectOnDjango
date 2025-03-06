@@ -17,6 +17,12 @@ class CoinNewController(CoinListController):
         return qs
 
     def get_context_data(self, **kwargs):
+        """Добавляет контекст для использования в шаблоне."""
         context = super().get_context_data(**kwargs)
         context["title"] = "Новые монеты"
+        context["breadcrumbs"] = [
+            {"title": "Главная", "url": "/"},
+            {"title": "Монеты", "url": "/coins/"},
+            {"title": "Новые монеты", "url": ""},
+        ]
         return context

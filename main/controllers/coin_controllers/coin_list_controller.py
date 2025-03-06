@@ -54,6 +54,10 @@ class CoinListController(ListView):
         context["states"] = self._get_annotated_models(State)
         context["themes"] = self._get_annotated_models(Theme)
         context["type_of_editions"] = self._get_annotated_models(TypeOfEdition)
+        context["breadcrumbs"] = [
+            {"title": "Главная", "url": "/"},
+            {"title": "Монеты", "url": ""},
+        ]
         return context
 
     def get_queryset(self) -> QuerySet[T]:
