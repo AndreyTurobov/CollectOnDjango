@@ -22,7 +22,12 @@
             <p><strong>Номер по каталогу KM:</strong> {{ coin.km_number }}</p>
             <p><strong>Материал:</strong> {{ coin.material }}</p>
             <p><strong>Состояние:</strong> {{ coin.state }}</p>
-            <p><strong>Тема:</strong> {{ coin.theme }}</p>
+            <p><strong>Тема:</strong>
+              {% for theme in coin.themes.all %}
+                {{ theme.title }}{% if not forloop.last %}, {% endif %}
+              {% empty %}
+                Нет тем
+              {% endfor %}</p>
             <p><strong>Тип издания:</strong> {{ coin.type_of_edition }}</p>
             <p><strong>Вес:</strong> {{ coin.weight }} г</p>
             <p><strong>Диаметр:</strong> {{ coin.diameter }} мм</p>

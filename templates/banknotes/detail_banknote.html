@@ -20,7 +20,12 @@
             <p><strong>Номер по каталогу KM:</strong> {{ banknote.km_number }}</p>
             <p><strong>Материал:</strong> {{ banknote.material }}</p>
             <p><strong>Состояние:</strong> {{ banknote.state }}</p>
-            <p><strong>Тема:</strong> {{ banknote.theme }}</p>
+            <p><strong>Тема:</strong>
+              {% for theme in banknote.themes.all %}
+                {{ theme.title }}{% if not forloop.last %}, {% endif %}
+              {% empty %}
+                  Нет тем
+              {% endfor %}</p>
             <p><strong>Тип издания:</strong> {{ banknote.type_of_edition }}</p>
             <p><strong>Подпись:</strong> {{ banknote.signature }}</p>
             <p><strong>Размер:</strong> {{ banknote.size }}</p>
