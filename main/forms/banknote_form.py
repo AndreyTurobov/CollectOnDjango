@@ -20,7 +20,7 @@ class BanknoteForm(forms.ModelForm):
             "country": forms.Select(attrs={"class": "form-control"}),
             "material": forms.Select(attrs={"class": "form-control"}),
             "state": forms.Select(attrs={"class": "form-control"}),
-            "theme": forms.Select(attrs={"class": "form-control"}),
+            "themes": forms.SelectMultiple(attrs={"class": "form-control"}),
             "type_of_edition": forms.Select(attrs={"class": "form-control"}),
             "description": forms.Textarea(attrs={"rows": 1}),
             "placeholder": "Введите описание банкноты",
