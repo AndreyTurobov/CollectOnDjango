@@ -26,4 +26,4 @@ format:
 	${RUFF} --fix .
 
 fake:
-	${MANAGE} fake_db --count 20
+	${MANAGE} fake_db --count 40
