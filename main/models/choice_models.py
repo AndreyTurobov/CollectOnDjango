@@ -17,9 +17,11 @@ class Country(models.Model):
     )
 
     def save(self, *args, **kwargs):
-        if self.flag and self.title:
+        if not self.pk and self.flag.name == self.flag.field.default:
+            super().save(*args, **kwargs)
             new_filename = f"{self.title}{os.path.splitext(self.flag.name)[1]}"
             self.flag.name = new_filename
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title
