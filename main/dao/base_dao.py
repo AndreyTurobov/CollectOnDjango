@@ -51,6 +51,13 @@ class BaseDAO(Generic[T]):
         :param filters: Словарь с параметрами фильтрации.
         :return: QuerySet отфильтрованных объектов.
         """
+        corrected_filters = {}
+        for key, value in filters.items():
+            if key == "themes":
+                corrected_filters["themes__id"] = value
+            else:
+                corrected_filters[key] = value
+
         filters = {k: v for k, v in filters.items() if v}
         return self.model.objects.filter(**filters)
 
