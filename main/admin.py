@@ -26,6 +26,7 @@ class CoinAdmin(admin.ModelAdmin):
         "country",
         "year",
     )
+    filter_horizontal = ("themes",)
 
 
 @admin.register(BanknoteModel)
@@ -43,6 +44,7 @@ class BanknoteAdmin(admin.ModelAdmin):
         "country",
         "year",
     )
+    filter_horizontal = ("themes",)
 
 
 @admin.register(Country)
