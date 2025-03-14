@@ -69,7 +69,7 @@ class CoinListController(ListView):
             "km_number": self.request.GET.get("km_number", ""),
             "material__id": self.request.GET.get("material"),
             "state__id": self.request.GET.get("state"),
-            "theme__id": self.request.GET.get("theme"),
+            "themes__id": self.request.GET.get("themes__id"),
             "type_of_edition__id": self.request.GET.get("type_of_edition"),
         }
 
