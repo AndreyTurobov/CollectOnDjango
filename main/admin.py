@@ -9,6 +9,7 @@ from main.models.choice_models import (
     TypeOfEdition,
 )
 from main.models.coin_model import CoinModel
+from main.models.collection_model import CollectionModel
 
 
 @admin.register(CoinModel)
@@ -45,6 +46,18 @@ class BanknoteAdmin(admin.ModelAdmin):
         "year",
     )
     filter_horizontal = ("themes",)
+
+
+@admin.register(CollectionModel)
+class CollectionAdmin(admin.ModelAdmin):
+    list_display = (
+        "title",
+        "created_at",
+    )
+    filter_horizontal = (
+        "coins",
+        "banknotes",
+    )
 
 
 @admin.register(Country)
