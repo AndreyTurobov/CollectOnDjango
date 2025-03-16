@@ -16,7 +16,7 @@ class CollectionCreateController(CreateView):
         context["title"] = "Добавление коллекции"
         context["breadcrumbs"] = [
             {"title": "Главная", "url": "/"},
-            {"title": "Коллекции", "url": "/collections/"},
+            {"title": "Коллекции", "url": "/collections/list/"},
             {"title": "Создать коллекцию", "url": ""},
         ]
         return context

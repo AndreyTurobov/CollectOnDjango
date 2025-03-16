@@ -27,7 +27,7 @@ class CollectionDetailController(DetailView):
         collection = self.get_object()
         context["breadcrumbs"] = [
             {"title": "Главная", "url": "/"},
-            {"title": "Коллекции", "url": "/collections/"},
+            {"title": "Коллекции", "url": "/collections/list/"},
             {"title": collection.title, "url": ""},
         ]
         return context

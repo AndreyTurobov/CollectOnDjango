@@ -19,7 +19,7 @@ class CollectionListController(ListView):
 
     template_name = "collections/list_collections.html"
     context_object_name = "collections"
-    paginate_by = 4
+    paginate_by = 6
 
     def __init__(self, *args, **kwargs):
         """Инициализация контроллера.

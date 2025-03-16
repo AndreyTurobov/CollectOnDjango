@@ -1,10 +1,10 @@
-from django.views.generic import CreateView
+from django.views.generic import UpdateView
 
 from main.forms.collection_form import CollectionForm
 from main.services.collection_service import CollectionService
 
 
-class CollectionUpdateController(CreateView):
+class CollectionUpdateController(UpdateView):
     """Контроллер для создания новой коллекции."""
 
     form_class = CollectionForm
@@ -30,7 +30,7 @@ class CollectionUpdateController(CreateView):
         context["title"] = "Редактирование коллекции"
         context["breadcrumbs"] = [
             {"title": "Главная", "url": "/"},
-            {"title": "Коллекции", "url": "/collections/"},
+            {"title": "Коллекции", "url": "/collections/list/"},
             {"title": f"Редактировать коллекцию: {collection.title}", "url": ""},
         ]
         return context
