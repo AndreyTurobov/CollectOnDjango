@@ -1,8 +1,10 @@
 from django.db import models
+from django.utils.text import slugify
 
 from main.models.banknote_model import BanknoteModel
 from main.models.base import TimedBaseModel
 from main.models.coin_model import CoinModel
+from main.models.slug_generator import generate_unique_slug
 
 
 class CollectionBanknoteModel(models.Model):
@@ -36,6 +38,13 @@ class CollectionModel(TimedBaseModel):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            base_slug = slugify(self.title, allow_unicode=True)
+            base_slug = base_slug[:100].strip("-")
+            self.slug = generate_unique_slug(self.__class__, base_slug)
+        super().save(*args, **kwargs)
 
     class Meta:
         """Мета-класс для модели CollectionModel."""
