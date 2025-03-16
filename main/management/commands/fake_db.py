@@ -11,6 +11,11 @@ from main.models.choice_models import (
     TypeOfEdition,
 )
 from main.models.coin_model import CoinModel
+from main.models.collection_model import (
+    CollectionBanknoteModel,
+    CollectionCoinModel,
+    CollectionModel,
+)
 
 
 class Command(BaseCommand):
@@ -147,4 +152,21 @@ class Command(BaseCommand):
 
         self.stdout.write(
             self.style.SUCCESS(f"Успешно создано {count} записей для каждой модели.")
+        )
+
+        # 4. Создание коллекций
+        collection = CollectionModel.objects.create(
+            title="Моя коллекция",
+            description="Пример описания",
+        )
+
+        # 5. Добавление банкнот и монет через промежуточные модели
+        CollectionBanknoteModel.objects.create(
+            collection=collection,
+            banknote=BanknoteModel.objects.first(),
+        )
+
+        CollectionCoinModel.objects.create(
+            collection=collection,
+            coin=CoinModel.objects.first(),
         )
