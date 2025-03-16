@@ -45,6 +45,15 @@ from main.controllers.coin_controllers.coin_list_controller import CoinListContr
 from main.controllers.coin_controllers.coin_new_controller import CoinNewController
 from main.controllers.coin_controllers.coin_planned_controller import CoinPlannedController
 from main.controllers.coin_controllers.coin_update_controller import CoinUpdateController
+from main.controllers.collection_controllers.collection_create_controller import (
+    CollectionCreateController,
+)
+from main.controllers.collection_controllers.collection_detail_controller import (
+    CollectionDetailController,
+)
+from main.controllers.collection_controllers.collection_list_controller import (
+    CollectionListController,
+)
 
 urlpatterns = [
     path("coins/", CoinListController.as_view(), name="coin-list"),
@@ -74,6 +83,13 @@ urlpatterns = [
         r"^banknotes/(?P<slug>[-\w]+)/update/$",
         BanknoteUpdateController.as_view(),
         name="banknote-update",
+    ),
+    path("collections/create/", CollectionCreateController.as_view(), name="create-collection"),
+    path("collections/list/", CollectionListController.as_view(), name="collection-list"),
+    re_path(
+        r"^collections/(?P<slug>[-\w]+)/$",
+        CollectionDetailController.as_view(),
+        name="collection-detail",
     ),
     path("countries/list/", CountryListController.as_view(), name="country-list"),
     path("create-country/", CountryCreateController.as_view(), name="create-country"),
