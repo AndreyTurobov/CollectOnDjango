@@ -54,6 +54,9 @@ from main.controllers.collection_controllers.collection_detail_controller import
 from main.controllers.collection_controllers.collection_list_controller import (
     CollectionListController,
 )
+from main.controllers.collection_controllers.collection_update_controller import (
+    CollectionUpdateController,
+)
 
 urlpatterns = [
     path("coins/", CoinListController.as_view(), name="coin-list"),
@@ -90,6 +93,11 @@ urlpatterns = [
         r"^collections/(?P<slug>[-\w]+)/$",
         CollectionDetailController.as_view(),
         name="collection-detail",
+    ),
+    re_path(
+        r"^collections/(?P<slug>[-\w]+)/update/$",
+        CollectionUpdateController.as_view(),
+        name="collection-update",
     ),
     path("countries/list/", CountryListController.as_view(), name="country-list"),
     path("create-country/", CountryCreateController.as_view(), name="create-country"),
