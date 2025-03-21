@@ -45,6 +45,11 @@ from main.controllers.coin_controllers.coin_list_controller import CoinListContr
 from main.controllers.coin_controllers.coin_new_controller import CoinNewController
 from main.controllers.coin_controllers.coin_planned_controller import CoinPlannedController
 from main.controllers.coin_controllers.coin_update_controller import CoinUpdateController
+from main.controllers.collection_controllers.collection_add_item_controller import (
+    AddItemToCollectionFormController,
+    BanknoteAddToCollectionListController,
+    CoinAddToCollectionListController,
+)
 from main.controllers.collection_controllers.collection_create_controller import (
     CollectionCreateController,
 )
@@ -63,6 +68,11 @@ urlpatterns = [
     path("coins/new/", CoinNewController.as_view(), name="coin-new"),
     path("coins/plan/", CoinPlannedController.as_view(), name="coin-plan"),
     path("coins/create/", CoinCreateController.as_view(), name="create-coin"),
+    path(
+        "coins/add-to-collection/",
+        CoinAddToCollectionListController.as_view(),
+        name="coin-add-to-collection-list",
+    ),
     re_path(
         r"^coins/(?P<slug>[-\w]+)/$",
         CoinDetailController.as_view(),
@@ -77,6 +87,11 @@ urlpatterns = [
     path("banknotes/new/", BanknoteNewController.as_view(), name="banknote-new"),
     path("banknotes/plan/", BanknotePlannedController.as_view(), name="banknote-plan"),
     path("banknotes/create/", BanknoteCreateController.as_view(), name="create-banknote"),
+    path(
+        "banknotes/add-to-collection/",
+        BanknoteAddToCollectionListController.as_view(),
+        name="banknote-add-to-collection-list",
+    ),
     re_path(
         r"^banknotes/(?P<slug>[-\w]+)/$",
         BanknoteDetailController.as_view(),
@@ -89,6 +104,11 @@ urlpatterns = [
     ),
     path("collections/create/", CollectionCreateController.as_view(), name="create-collection"),
     path("collections/list/", CollectionListController.as_view(), name="collection-list"),
+    re_path(
+        r"^collections/add-item/(?P<item_type>coin|banknote)/(?P<item_slug>[-\w]+)/$",
+        AddItemToCollectionFormController.as_view(),
+        name="add-item-to-collection",
+    ),
     re_path(
         r"^collections/(?P<slug>[-\w]+)/$",
         CollectionDetailController.as_view(),
