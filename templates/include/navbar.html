@@ -1,13 +1,26 @@
 <nav class="bg-[#3d82f6] w-64 p-4">
     <ul class="space-y-2">
         <li><a href="{% url 'create-collection' %}"
-               class="text-[#eff6ff] bg-[#1e3a8a] px-4 py-2 block rounded hover:bg-[#075985]"
+               class="w-full text-[#eff6ff] bg-[#1e3a8a] px-4 py-2 block rounded hover:bg-[#075985]"
             >
                 Создать коллекцию
             </a>
         </li>
-        <li><a href="#" class="text-[#eff6ff] bg-[#1e3a8a] px-4 py-2 block rounded hover:bg-[#075985]">Добавить в коллекцию</a></li>
-        <li><a href="#" class="text-[#eff6ff] bg-[#1e3a8a] px-4 py-2 block rounded hover:bg-[#075985]">Редактировать коллекцию</a></li>
+        <li>
+            <button
+              onclick="openModal('add-to-collection')"
+              class="w-full text-[#eff6ff] bg-[#1e3a8a] px-4 py-2 block rounded hover:bg-[#075985]"
+            >
+              Добавить в коллекцию
+            </button>
+        </li>
+        <li>
+            <a href="{% url 'collection-list' %}"
+               class="text-[#eff6ff] bg-[#1e3a8a] px-4 py-2 block rounded hover:bg-[#075985]"
+            >
+              Редактировать коллекцию
+            </a>
+        </li>
         <li>
             <button
                 onclick="openModal('create')"
@@ -65,5 +78,7 @@
      data-banknote-new="{% url 'banknote-new' %}"
      data-coin-plan="{% url 'coin-plan' %}"
      data-banknote-plan="{% url 'banknote-plan' %}"
+     data-banknote-add-to-collection-list="{% url 'banknote-add-to-collection-list' %}"
+     data-coin-add-to-collection-list="{% url 'coin-add-to-collection-list' %}"
      style="display: none;">
 </div>

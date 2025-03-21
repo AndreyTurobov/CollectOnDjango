@@ -20,6 +20,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+document.querySelectorAll('.catalog-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        const countryId = this.dataset.countryId;
+        const countryTitle = this.dataset.countryTitle;
+        openCatalogModal(countryId, countryTitle);
+    });
+});
+
 // Функции для открытия и закрытия модального окна в navbar
 function openModal(action) {
     const modal = document.getElementById('modal');
@@ -88,6 +96,18 @@ function openModal(action) {
                 Банкноты
             </a>
         `;
+    } else if (action === 'add-to-collection') {
+        modalTitle.textContent = 'Добавить в коллекцию';
+        modalContent.innerHTML = `
+            <a href="${urls.coinAddToCollectionList}" 
+               class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                Монеты
+            </a>
+            <a href="${urls.banknoteAddToCollectionList}" 
+               class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                Банкноты
+            </a>
+        `;
     }
 
     modal.classList.remove('hidden');
@@ -98,18 +118,18 @@ function closeModal() {
 }
 
 // Функция для открытия модального окна с выбором каталога по странам
-function openCatalogModal(country) {
+function openCatalogModal(countryId, countryTitle) {
     const modal = document.getElementById('catalogModal');
     const content = document.getElementById('catalogModalContent');
     const title = document.getElementById('catalogModalTitle');
 
-    title.textContent = `Каталоги: ${country}`;
+    title.textContent = `Каталоги: ${countryTitle}`;
     content.innerHTML = `
-        <a href="/coins/?country=${encodeURIComponent(country)}" 
+        <a href="/coins/?country=${encodeURIComponent(countryId)}" 
            class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
             Монеты
         </a>
-        <a href="/banknotes/?country=${encodeURIComponent(country)}" 
+        <a href="/banknotes/?country=${encodeURIComponent(countryId)}" 
            class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
             Банкноты
         </a>
