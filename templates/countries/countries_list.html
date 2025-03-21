@@ -17,7 +17,10 @@
             <h3>{{ country.title }}</h3>
 
             <!-- Кнопка "Каталоги" -->
-            <button onclick="openCatalogModal('{{ country.title }}')">
+            <button
+              class="catalog-btn"
+              data-country-id="{{ country.id }}"
+              data-country-title="{{ country.title|escapejs }}">
                 Каталоги
             </button>
         </div>

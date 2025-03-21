@@ -64,7 +64,7 @@ class CoinListController(ListView):
         """Возвращает отфильтрованный список монет на основе параметров запроса."""
         name_filter = self.request.GET.get("name", "")
         filters = {
-            "country__title": self.request.GET.get("country"),
+            "country__id": self.request.GET.get("country"),
             "year": self.request.GET.get("year", ""),
             "km_number": self.request.GET.get("km_number", ""),
             "material__id": self.request.GET.get("material"),
