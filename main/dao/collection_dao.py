@@ -1,3 +1,5 @@
+from typing import Optional
+
 from django.db.models import QuerySet
 
 from main.dao.base_dao import BaseDAO
@@ -20,3 +22,10 @@ class CollectionDAO(BaseDAO[Collection]):
     def get_all(self) -> QuerySet[Collection]:
         """Возвращает все коллекции в порядке убывания даты создания."""
         return self.model.objects.all().order_by("-created_at")
+
+    def get_by_slug(self, slug: str) -> Optional[Collection]:
+        """Возвращает коллекцию по её slug."""
+        try:
+            return self.model.objects.get(slug=slug)
+        except self.model.DoesNotExist:
+            return None
