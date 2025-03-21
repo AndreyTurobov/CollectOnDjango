@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mx-auto p-4">
+  {% include "include/filter.html" %}
+  <h1 class="text-3xl font-bold mb-6">Монеты</h1>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    {% for coin in coins %}
+      <div class="bg-white p-4 rounded-lg shadow-lg">
+        <h2 class="text-xl font-bold">{{ coin.full_title }}</h2>
+        <a
+          href="{% url 'add-item-to-collection' 'coin' coin.slug %}"
+          class="mt-2 bg-blue-500 text-white px-4 py-2 block text-center rounded hover:bg-blue-600"
+        >
+          Добавить в коллекцию
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+    {% include 'include/pagination.html' %}
+</div>
+<button id="scrollToTopBtn">
+    <span>↑</span>
+</button>
+{% endblock %}

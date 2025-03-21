@@ -1,0 +1,17 @@
+<!-- collections/add_to_collection_form.html -->
+{% extends "base.html" %}
+{% block content %}
+<div class="container mx-auto p-4">
+  <h1 class="text-3xl font-bold mb-6">Выберите коллекцию</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button
+      type="submit"
+      class="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+    >
+      Сохранить
+    </button>
+  </form>
+</div>
+{% endblock %}
