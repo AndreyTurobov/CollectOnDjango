@@ -59,6 +59,10 @@ class BaseItemListController(ListView, Generic[T, M]):
             .order_by("title")
         )
 
+    def setup(self, request, *args, **kwargs):
+        super().setup(request, *args, **kwargs)
+        self.object_list = self.get_queryset()
+
     def get_context_data(self, **kwargs) -> dict:
         """Общий контекст для всех списков предметов."""
         context = super().get_context_data(**kwargs)
