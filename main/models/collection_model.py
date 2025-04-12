@@ -24,26 +24,53 @@ class CollectionCoinModel(models.Model):
 
 
 class CollectionModel(TimedBaseModel):
-    title = models.CharField(max_length=100, verbose_name="Название")
-    slug = models.SlugField(
-        max_length=100, allow_unicode=True, unique=True, blank=True, verbose_name="Слаг"
+    title = models.CharField(
+        max_length=100,
+        verbose_name="Название",
     )
-    description = models.TextField(blank=True, verbose_name="Описание")
+    slug = models.SlugField(
+        max_length=100,
+        allow_unicode=True,
+        unique=True,
+        blank=True,
+        verbose_name="Слаг",
+    )
+    description = models.TextField(
+        blank=True,
+        verbose_name="Описание",
+    )
     banknotes = models.ManyToManyField(
-        BanknoteModel, through="CollectionBanknoteModel", verbose_name="Банкноты", blank=True
+        BanknoteModel,
+        through="CollectionBanknoteModel",
+        verbose_name="Банкноты",
+        blank=True,
     )
     coins = models.ManyToManyField(
-        CoinModel, through="CollectionCoinModel", verbose_name="Монеты", blank=True
+        CoinModel,
+        through="CollectionCoinModel",
+        verbose_name="Монеты",
+        blank=True,
     )
 
     def __str__(self):
         return self.title
 
     def save(self, *args, **kwargs):
-        if not self.slug:
+        # Если объект уже существует
+        if self.pk:
+            # Получаем текущий объект из БД
+            old_instance = CollectionModel.objects.get(pk=self.pk)
+            # Если название изменилось - генерируем новый слаг
+            if old_instance.title != self.title:
+                base_slug = slugify(self.title, allow_unicode=True)
+                base_slug = base_slug[:100].strip("-")
+                self.slug = generate_unique_slug(self.__class__, base_slug)
+        # Для новых объектов
+        elif not self.slug:
             base_slug = slugify(self.title, allow_unicode=True)
             base_slug = base_slug[:100].strip("-")
             self.slug = generate_unique_slug(self.__class__, base_slug)
+
         super().save(*args, **kwargs)
 
     class Meta:
