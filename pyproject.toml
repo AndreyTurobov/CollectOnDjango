@@ -16,9 +16,22 @@ faker = "^35.0.0"
 ruff = "^0.9.4"
 pre-commit = "^4.1.0"
 
+[tool.poetry.group.test.dependencies]
+pytest = "^8.3.5"
+pytest-django = "^4.11.1"
+pytest-cov = "^6.1.1"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.settings"
+python_files = "test_*.py"
+
+[tool.coverage.run]
+source = ["main"]
+omit = ["*/tests/*"]
 
 [tool.ruff]
 line-length = 99
