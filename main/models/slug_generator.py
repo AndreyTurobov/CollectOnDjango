@@ -1,8 +1,15 @@
-def generate_unique_slug(model_class, base_slug, slug_field="slug"):
-    """Создает уникальный слаг объекта."""
+def generate_unique_slug(model, base_slug, instance=None):
+    """Генерирует уникальный слаг, учитывая существующие записи.
+
+    Если передается instance - исключаем его из проверки.
+    """
+    slug = base_slug
     counter = 1
-    temp_slug = base_slug
-    while model_class.objects.filter(**{slug_field: temp_slug}).exists():
-        temp_slug = f"{base_slug}-{counter}"
+    while True:
+        qs = model.objects.filter(slug=slug)
+        if instance:
+            qs = qs.exclude(pk=instance.pk)
+        if not qs.exists():
+            return slug
+        slug = f"{base_slug}-{counter}"
         counter += 1
-    return temp_slug
