@@ -18,13 +18,34 @@ document.addEventListener('DOMContentLoaded', function() {
             window.scrollTo({ top: 0, behavior: "smooth" });
         });
     }
-});
+})
 
 document.querySelectorAll('.catalog-btn').forEach(button => {
     button.addEventListener('click', function() {
         const countryId = this.dataset.countryId;
         const countryTitle = this.dataset.countryTitle;
         openCatalogModal(countryId, countryTitle);
+    });
+});
+
+// Сохранение фильтров при изменении полей
+document.querySelectorAll('input[type="text"], select').forEach(element => {
+    element.addEventListener('change', function() {
+        const formData = new FormData(document.querySelector('form'));
+        const paramsObj = Object.fromEntries(formData.entries());
+        delete paramsObj.page;
+        const params = new URLSearchParams(paramsObj).toString();
+        window.history.pushState(null, '', `?${params}`);
+    });
+});
+
+// Восстановление фильтров при загрузке
+document.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+
+    document.querySelectorAll('input[type="text"], select').forEach(element => {
+        const paramValue = urlParams.get(element.name);
+        if (paramValue) element.value = paramValue;
     });
 });
 

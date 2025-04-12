@@ -71,6 +71,12 @@ class BaseItemListController(ListView, Generic[T, M]):
         context["states"] = self._get_annotated_models(State)
         context["themes"] = self._get_annotated_models(Theme)
         context["type_of_editions"] = self._get_annotated_models(TypeOfEdition)
+
+        query_params = self.request.GET.copy()
+        while "page" in query_params:
+            del query_params["page"]
+        context["query_params"] = query_params.urlencode()
+
         return context
 
     def _apply_filters(self, queryset: QuerySet[T]) -> QuerySet[T]:
