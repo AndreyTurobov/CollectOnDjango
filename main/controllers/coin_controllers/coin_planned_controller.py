@@ -1,6 +1,7 @@
 from django.db.models import QuerySet
 
 from main.controllers.coin_controllers.coin_list_controller import CoinListController
+from main.services.coin_service import CoinService
 
 
 class CoinPlannedController(CoinListController):
@@ -10,6 +11,7 @@ class CoinPlannedController(CoinListController):
     """
 
     template_name = "coins/plan_coins.html"
+    service = CoinService()
 
     def get_queryset(self) -> QuerySet:
         """Возвращает QuerySet монет, которые планируются добавить в коллекцию."""

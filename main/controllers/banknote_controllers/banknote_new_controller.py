@@ -1,6 +1,7 @@
 from django.db.models import QuerySet
 
 from main.controllers.banknote_controllers.banknote_list_controller import BanknoteListController
+from main.services.banknote_service import BanknoteService
 
 
 class BanknoteNewController(BanknoteListController):
@@ -10,6 +11,7 @@ class BanknoteNewController(BanknoteListController):
     """
 
     template_name = "banknotes/new_banknotes.html"
+    service = BanknoteService()
 
     def get_queryset(self) -> QuerySet:
         """Возвращает QuerySet монет, которые планируются добавить в коллекцию."""
